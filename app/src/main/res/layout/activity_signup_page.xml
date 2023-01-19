@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/register_name"
+        android:layout_width="292dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="40dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/register_roll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/register_roll"
+        android:layout_width="292dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="Roll Number"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/register_insti_email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_name" />
+
+    <EditText
+        android:id="@+id/register_insti_email"
+        android:layout_width="292dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="@string/institute_email"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/register_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_roll" />
+
+    <EditText
+        android:id="@+id/register_password"
+        android:layout_width="292dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/register_confirm_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_insti_email" />
+
+    <EditText
+        android:id="@+id/register_confirm_password"
+        android:layout_width="292dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/register_whatsapp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_password" />
+
+    <EditText
+        android:id="@+id/register_whatsapp"
+        android:layout_width="292dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="Whatsapp Number"
+        android:inputType="phone"
+        app:layout_constraintBottom_toTopOf="@+id/register_mobile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_confirm_password" />
+
+    <EditText
+        android:id="@+id/register_mobile"
+        android:layout_width="292dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="Mobile Number"
+        android:inputType="phone"
+        app:layout_constraintBottom_toTopOf="@+id/Image_upload"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_whatsapp" />
+
+    <Button
+        android:id="@+id/Signup_button"
+        android:layout_width="170dp"
+        android:layout_height="53dp"
+        android:text="Register"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_mobile"
+        app:layout_constraintVertical_bias="0.795" />
+
+    <TextView
+        android:id="@+id/Image_upload"
+        android:layout_width="292dp"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:text="Upload Profile Image"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/Signup_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_mobile"
+        app:layout_constraintVertical_bias="0.159" />
+
+    <ImageView
+        android:id="@+id/Upload_profile_pic_button"
+        android:layout_width="49dp"
+        android:layout_height="48dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Image_upload"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.801"
+        app:layout_constraintStart_toStartOf="@+id/Image_upload"
+        app:layout_constraintTop_toTopOf="@+id/Image_upload"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_baseline_cloud_upload_24" />
+
+    <ImageView
+        android:id="@+id/view_password"
+        android:layout_width="36dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/register_password"
+        app:layout_constraintEnd_toEndOf="@+id/register_password"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/register_password"
+        app:layout_constraintTop_toTopOf="@+id/register_password"
+        app:srcCompat="@drawable/ic_baseline_remove_red_eye_24" />
+
+    <ImageView
+        android:id="@+id/view_confirm_password"
+        android:layout_width="36dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/register_confirm_password"
+        app:layout_constraintEnd_toEndOf="@+id/register_confirm_password"
+        app:layout_constraintHorizontal_bias="0.996"
+        app:layout_constraintStart_toStartOf="@+id/register_confirm_password"
+        app:layout_constraintTop_toTopOf="@+id/register_confirm_password"
+        app:srcCompat="@drawable/ic_baseline_remove_red_eye_24" />
+
+    <TextView
+        android:id="@+id/valid_pass_text"
+        android:layout_width="238dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="2dp"
+        android:text="The password must contain atleast 6 characters"
+        android:textColor="#EF0A0A"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/register_confirm_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/register_password"
+        app:layout_constraintTop_toBottomOf="@+id/register_insti_email"
+        app:layout_constraintVertical_bias="0.773" />
+</androidx.constraintlayout.widget.ConstraintLayout>

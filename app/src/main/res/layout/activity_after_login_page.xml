@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Background">
+
+    <Button
+        android:id="@+id/post_lost_item"
+        android:layout_width="355dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="75dp"
+        android:text="@string/post_for_lost_item"
+        android:textSize="16sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/post_found_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/post_found_item"
+        android:layout_width="355dp"
+        android:layout_height="70dp"
+        android:text="@string/post_for_found_item"
+        android:textSize="16sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/check_lost_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/post_lost_item" />
+
+    <Button
+        android:id="@+id/check_lost_item"
+        android:layout_width="355dp"
+        android:layout_height="70dp"
+        android:text="@string/check_feed_for_lost_item"
+        android:textSize="16sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/check_found_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/post_found_item" />
+
+    <Button
+        android:id="@+id/check_found_item"
+        android:layout_width="355dp"
+        android:layout_height="70dp"
+        android:text="@string/check_feed_for_found_item"
+        android:textSize="16sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/My_lost_post_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/check_lost_item" />
+
+    <Button
+        android:id="@+id/My_lost_post_button"
+        android:layout_width="355dp"
+        android:layout_height="70dp"
+        android:text="my lost posts"
+        android:textSize="16sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/my_found_post_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/check_found_item" />
+
+    <Button
+        android:id="@+id/update_button_butoon"
+        android:layout_width="355dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="45dp"
+        android:text="@string/update_password"
+        android:textSize="16sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_found_post_button" />
+
+    <TextView
+        android:id="@+id/Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/logout"
+        android:textColor="#292626"
+
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/name_display"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView2" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="24dp"
+        android:layout_height="21dp"
+        app:layout_constraintBottom_toTopOf="@+id/post_lost_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.793"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.115"
+        app:srcCompat="@drawable/power" />
+
+    <TextView
+        android:id="@+id/name_display"
+        android:layout_width="116dp"
+        android:layout_height="18dp"
+        android:minHeight="48dp"
+        android:text="@string/atul_pande"
+        android:textColor="#201D1D"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/post_lost_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.114" />
+
+    <ImageView
+        android:id="@+id/Profile_pic_image"
+        android:layout_width="47dp"
+        android:layout_height="46dp"
+        app:layout_constraintBottom_toTopOf="@+id/post_lost_item"
+        app:layout_constraintEnd_toStartOf="@+id/name_display"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.136"
+        app:srcCompat="@drawable/ic_baseline_person_24" />
+
+    <Button
+        android:id="@+id/my_found_post_button"
+        android:layout_width="355dp"
+        android:layout_height="70dp"
+        android:text="My found posts"
+        android:textSize="16sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/update_button_butoon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/My_lost_post_button" />
+
+    <TextView
+        android:id="@+id/roll_display"
+        android:layout_width="116dp"
+        android:layout_height="18dp"
+        android:text="TextView"
+        android:textColor="#292525"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/post_lost_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_display"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">LostNFound</string>
+    <string name="Signup">Don\'t have an account\?</string>
+    <string name="F_Pass">Forgot Password?</string>
+    <string name="s_up">Signup</string>
+    <string name="r_Pass">Reset Password</string>
+    <string name="login_button_text">LOGIN</string>
+    <string name="enter_username">Enter Institute Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="post_for_lost_item">Post for Lost Item</string>
+    <string name="post_for_found_item">Post for Found Item</string>
+    <string name="check_feed_for_lost_item">Check Feed for Lost Item</string>
+    <string name="check_feed_for_found_item">Check Feed for Found Item</string>
+    <string name="my_posts">My Posts</string>
+    <string name="update_password">Update Password</string>
+    <string name="password">Password</string>
+    <string name="institute_email">Institute Email</string>
+    <string name="please_wait">Please wait</string>
+    <string name="hello">Hello!!</string>
+    <string name="logout">LOGOUT</string>
+    <string name="atul_pande">Atul Pande</string>
+    <string name="title_activity_lost">LostActivity</string>
+    <string name="title_activity_after_login">after_login</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+</resources>
