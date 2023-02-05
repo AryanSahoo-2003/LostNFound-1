@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,14 +8,15 @@
     tools:context=".activities.FoundActivity">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="360dp"
-        android:layout_height="50dp"
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="@color/white"
-        android:backgroundTint="#F4F2F6"
+        android:background="#e9e9e9"
+        android:backgroundTint="#e9e9e9"
         android:elevation="20dp"
-        app:cardCornerRadius="40dp"
+        app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toTopOf="@+id/idRVCourse"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -34,7 +35,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:queryHint="Search Your Found Item.........." />
+            app:queryHint=" Search Your Found Item.........." />
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -43,4 +44,23 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_marginTop="60dp" />
-</RelativeLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/hllo"
+        android:layout_width="55dp"
+        android:layout_height="65dp"
+        android:backgroundTint="#E3230A"
+        android:elevation="20dp"
+        android:shadowColor="@color/black"
+        android:shadowDx="2"
+        android:shadowDy="5"
+        app:cornerRadius="100dp"
+        app:icon="@drawable/ic_baseline_add_24"
+        app:layout_constraintBottom_toBottomOf="@+id/idRVCourse"
+        app:layout_constraintEnd_toEndOf="@+id/idRVCourse"
+        app:layout_constraintHorizontal_bias="0.912"
+        app:layout_constraintStart_toStartOf="@+id/idRVCourse"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintVertical_bias="0.955" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

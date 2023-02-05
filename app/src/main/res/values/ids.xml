@@ -2,4 +2,5 @@
 <resources>
     <item name="recyclerView" type="id" />
     <item name="searchView_Lost" type="id" />
+    <item name="RollFound" type="id" />
 </resources>

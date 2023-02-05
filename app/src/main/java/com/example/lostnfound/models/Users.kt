@@ -10,7 +10,9 @@ data class Users(
     val email:String="",
     val whatsapp:String="",
     val mobile:String="",
-    val image:String="" // stores image link
+    val image:String="", // stores image link
+    val admin:Boolean=false,
+    val valid:Boolean=true
     ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
@@ -21,7 +23,7 @@ data class Users(
         parcel.readString()!!
     ) {
     }
-//  constructor():this("sds","sds","dds","sdsd","534534",null)
+
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)

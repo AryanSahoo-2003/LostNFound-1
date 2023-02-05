@@ -1,6 +1,8 @@
 package com.example.lostnfound.activities
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -15,11 +17,12 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_signup_page.*
+
 
 
 class MainActivity : BaseActivity() {
     private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -48,34 +51,22 @@ class MainActivity : BaseActivity() {
             signInRegistered()
         }
 
-//        setUpActionBar()//Action Bar
-
-
 }
-//    private fun setUpActionBar(){
-//        setSupportActionBar(toolbar_login)
-//
-//        val actionBar=supportActionBar
-//        if(actionBar !=null){
-//            actionBar.setDisplayHomeAsUpEnabled(true)
-//            actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
-//        }
-//        toolbar_login.setNavigationOnClickListener{onBackPressed()}
-//    }
+
     private fun signInRegistered()
     {
         val email=Username.text.toString().trim{it <=' '}
-
         val password=Login_password.text.toString().trim{it <=' '}
-
         if(validateForm(email, password))
         {
+            intent.putExtra("email",email)
             showProgressDialog("Please Wait")
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     hideProgressDialog()
                     if (task.isSuccessful) {
                         if(auth.currentUser?.isEmailVerified==true){
+                            savedData(email);
                             firestoreclass().signInUser(this)
                         }
                         else{
@@ -89,6 +80,16 @@ class MainActivity : BaseActivity() {
                 }
         }
 
+    }
+    //new code started 23:28 - 01-02-2023
+    fun savedData(email: String){
+        var sharedPreferences:SharedPreferences=getSharedPreferences("logindata", MODE_PRIVATE);
+        var editorShared:SharedPreferences.Editor=sharedPreferences.edit();
+        editorShared.putBoolean("logincounter",true);
+        editorShared.putString("useremail",email);
+        editorShared.putString("uidUser", FirebaseAuth.getInstance().currentUser?.uid!!);
+        editorShared.apply();
+        Log.d("loginStatus","true/false")
     }
     private fun validateForm(email:String,password:String):Boolean {
         return when {
@@ -114,12 +115,23 @@ class MainActivity : BaseActivity() {
         }
     }
         fun signInSuccess(user: Users){
-//            hideProgressDialog()
-//            val name=user.name
-            Toast.makeText(this,"Login successful :) ",
-                Toast.LENGTH_SHORT).show()
-//            AfterLoginPage().setName(user.name)
-            startActivity(Intent(this,AfterLoginPage::class.java))
-            finish()
+
+            if(user.valid==false) {
+                Toast.makeText(this,"You have been Banned :(",
+                    Toast.LENGTH_SHORT).show()
+                FirebaseAuth.getInstance().signOut()
+            }
+            else{
+                Toast.makeText(this,"Login successful :) ",
+                    Toast.LENGTH_SHORT).show()
+
+                var intentToNav : Intent = Intent(this,Tabs::class.java)
+                startActivity(intentToNav)
+                finish()
+            }
         }
+    override fun onBackPressed(){
+        finish()
+        System.exit(0)
+    }
     }

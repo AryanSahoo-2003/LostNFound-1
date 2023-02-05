@@ -6,6 +6,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -36,22 +37,32 @@ class MyLostAdapter(private val context: Context, courseModelArrayList: ArrayLis
         // to inflate the layout for each item of recycler view.
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_my, parent, false)
         return Viewholder(view,mlistener).listen{ pos, type ,flag->
-//
             val item=courseModelArrayList[pos]
    if(flag==0){
        val builder = AlertDialog.Builder(context)
+       val dialogLayout : View =  LayoutInflater.from(this.context).inflate(R.layout.alert_dia,null)
+
        //set title for alert dialog
        builder.setTitle("Delete")
        //set message for alert dialog
        builder.setMessage("Sure you want to delete?")
+       val editname=dialogLayout.findViewById<EditText>(R.id.NameFounded)
+       val editRoll=dialogLayout.findViewById<EditText>(R.id.RollFound)
        builder.setIcon(android.R.drawable.ic_dialog_alert)
 
        builder.setPositiveButton("Yes") { dialogInterface, which ->
-           FirebaseFirestore.getInstance().collection("lostitem").document(item.item_id).delete()
+
+           FirebaseFirestore.getInstance().collection("lostitem").document(item.item_id).update("delete",true)
                .addOnSuccessListener {
-                   Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT).show();
-                   context.startActivity(Intent(context, MyLostActivity::class.java))
-                   MyLostActivity().finish()
+                   FirebaseFirestore.getInstance().collection("lostitem").document(item.item_id).delete().addOnSuccessListener {
+                       Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+                       FirebaseFirestore.getInstance().collection("archivelost").add(item).addOnSuccessListener {
+                           FirebaseFirestore.getInstance().collection("archivelost").document(it.id.toString()).update("target_name",editname.text.toString())
+                           FirebaseFirestore.getInstance().collection("archivelost").document(it.id).update("target_roll",editRoll.text.toString())
+                       }
+
+                       context.startActivity(Intent(context, Tabs::class.java))
+                   }
                }.addOnFailureListener {
                Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
            }
@@ -62,6 +73,7 @@ class MyLostAdapter(private val context: Context, courseModelArrayList: ArrayLis
        val alertDialog: AlertDialog = builder.create()
        // Set other dialog properties
        alertDialog.setCancelable(false)
+       alertDialog.setView(dialogLayout)
        alertDialog.show()
    }
        else{
@@ -72,17 +84,26 @@ class MyLostAdapter(private val context: Context, courseModelArrayList: ArrayLis
        val keyword=item.item_lost
        val desc=item.description
        val image=item.image
+       var img1: String? =""
+
+       for(it in 0..image.size-1){
+           img1+=image[it]
+           img1+="\n"
+       }
+
 
        val intent = Intent(context, updateLost::class.java)
-       //listener?.onClick(AlbumsData)
        intent.putExtra("name", name)
        intent.putExtra("phone", phone)
        intent.putExtra("place", place)
        intent.putExtra("date", date)
        intent.putExtra("keyword", keyword)
        intent.putExtra("desc", desc)
+       intent.putExtra("stringOfImages",img1)
        intent.putExtra("image", image)
        intent.putExtra("doc_id", item.item_id)
+       intent.putExtra("whichintent","LOST ITEM")
+       intent.putExtra("helperwhich","Item Lost")
        context.startActivity(intent)
    }
    }
@@ -100,7 +121,7 @@ class MyLostAdapter(private val context: Context, courseModelArrayList: ArrayLis
         try {
             Glide     //using Glide to display image from url
                 .with(context)
-                .load(item.image)
+                .load(item.image[0])
                 .centerCrop()
                 .placeholder(R.drawable.ic_baseline_person_24)
                 .into(holder.image_lost);

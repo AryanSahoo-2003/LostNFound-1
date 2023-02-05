@@ -4,40 +4,70 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1625" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/drawable/buttoncustom.xml" value="0.183" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/drawable/circular_image.xml" value="0.183" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/drawable/gradient2.xml" value="0.183" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/drawable/gradient_color.xml" value="0.183" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/drawable/ic_baseline_123_24.xml" value="0.18" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1775" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.1625" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/drawable/ic_baseline_cloud_upload_24.xml" value="0.1625" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/drawable/ic_baseline_error_24.xml" value="0.18" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/drawable/ic_baseline_local_phone_24.xml" value="0.1275" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/drawable/ic_baseline_local_post_office_24.xml" value="0.1515" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.1625" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1625" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/drawable/ic_baseline_remove_red_eye_24.xml" value="0.1625" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1625" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/drawable/power.xml" value="0.1315" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/drawable/ripple_add.xml" value="0.1775" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/font/.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_after_login.xml" value="0.13333333333333333" />
-        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_after_login_page.xml" value="0.22" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_after_login_page.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_archieve_found_fragment.xml" value="0.16983695652173914" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_archieve_lost_fragment.xml" value="0.16983695652173914" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_archieve_tab.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_base.xml" value="0.17552083333333332" />
-        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_fill_found_item.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_fill_lost_item.xml" value="0.14666666666666667" />
-        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_found.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_lost.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_lost_expanded_description.xml" value="0.22" />
-        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_main.xml" value="0.6" />
-        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_my_found.xml" value="0.1308876811594203" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_fill_found_item.xml" value="0.22" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_fill_lost_item.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_found.xml" value="0.22" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_lost.xml" value="0.22" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_lost_expanded_description.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_main.xml" value="0.15604395604395604" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_my_found.xml" value="0.22" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_my_lost.xml" value="0.1308876811594203" />
-        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_signup_page.xml" value="0.3965014577259475" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_navigation.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_signup_page.xml" value="0.22" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_splash_screen.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_tabs.xml" value="0.22" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_tabs_fill_item.xml" value="0.16983695652173914" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_update_found.xml" value="0.22" />
-        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_update_password.xml" value="0.22" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_update_password.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/activity_updateprofile.xml" value="0.22" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/after_login_page.xml" value="0.13999999999999999" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/alert_dia.xml" value="0.17447916666666666" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/app_bar_after_login.xml" value="0.1" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/archive_iem.xml" value="0.22" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/circular_image.xml" value="0.16145833333333334" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/content_after_login.xml" value="0.1" />
-        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/dialog_progress.xml" value="0.5" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/content_navigation.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/dialog_progress.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/each_image_slider.xml" value="0.16983695652173914" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/fragment_gallery.xml" value="0.1" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/fragment_slideshow.xml" value="0.1" />
-        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/item.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/item_my.xml" value="0.7333333333333334" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/item.xml" value="0.30120481927710846" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/item_my.xml" value="0.22" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/nav_header.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/nav_header_after_login.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/nav_header_navigation.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/new_signup.xml" value="0.22" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/notification.xml" value="0.22" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/sign_up_page.xml" value="0.17447916666666666" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/layout/test.xml" value="0.16983695652173914" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/menu/activity_main_drawer.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/menu/after_login.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/menu/navigation.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/mipmap-anydpi-v26/ic_launcher_logo.xml" value="0.1625" />
         <entry key="..\:/Users/pande/AndroidStudioProjects/LostNFound/app/src/main/res/mipmap-anydpi-v26/ic_launcher_logo_round.xml" value="0.1625" />
       </map>

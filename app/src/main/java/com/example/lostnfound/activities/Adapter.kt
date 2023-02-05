@@ -2,6 +2,7 @@ package com.example.lostnfound.activities
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 
 import android.view.LayoutInflater
 import android.view.View
@@ -43,7 +44,7 @@ class CourseAdapter(private val context: Context, courseModelArrayList: ArrayLis
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false)
         return Viewholder(view,mlistener).listen { pos, type ->
             val item = courseModelArrayList[pos]
-
+            Log.d("aryan",item.toString())
 //            Toast.makeText(context,item.name, Toast.LENGTH_SHORT).show()
 
             var sendto="bjhddh"
@@ -53,18 +54,19 @@ class CourseAdapter(private val context: Context, courseModelArrayList: ArrayLis
             mFireStore.collection(Constants.USERS)
                 .document(getcurrentUserID()).get().addOnSuccessListener { document ->
                     val loggedInUser = document.toObject(Users::class.java)!!
-                    message ="Dear "+item.name+",\n"+loggedInUser.name+" has found the lost item.\nDescription:"+item.description+ "\nEmail:"+loggedInUser.email+"\nPhone Number:"+loggedInUser.mobile+"\nWhatsapp:"+loggedInUser.whatsapp;
+                    message ="Hello "+item.name+",\n"+loggedInUser.name+" has found the lost item.\nDescription:"+item.description+ "\nEmail:"+loggedInUser.email+"\nPhone Number:"+loggedInUser.mobile+"\nWhatsapp:"+loggedInUser.whatsapp;
                 }.addOnCompleteListener{
                     val subject= "Found Lost Item"
                     val msg=message
                     sendto=item.user_email
 
                     val send = Intent(Intent.ACTION_SENDTO)
-                    val uriText = "mailto:" + Uri.encode("recipient@gmail.com") +
+                    val uriText = "mailto:" + Uri.encode(item.user_email) +
                             "?subject=" + Uri.encode(subject) +
                             "&body=" + Uri.encode(msg)
                     val uri = Uri.parse(uriText)
-
+                    send.putExtra(Intent.EXTRA_EMAIL,"no-reply@iitp.ac.in")
+                        Log.d("aryan",item.user_email)
                     send.data = uri
                     context.startActivity(Intent.createChooser(send, "Choose an Email client :"))
                 }
@@ -77,12 +79,7 @@ class CourseAdapter(private val context: Context, courseModelArrayList: ArrayLis
     override fun onBindViewHolder(holder: CourseAdapter.Viewholder, position: Int) {
         // to set data to textview and imageview of each card layout
         val item: Lost = courseModelArrayList[position]
-//        Glide     //using Glide to display image from url
-//            .with(LostActivity())
-//            .load(item.image)
-//            .centerCrop()
-//            .placeholder(R.drawable.ic_baseline_person_24)
-//            .into(holder.image_lost);
+
 
         holder.name_lost.text=item.name
         holder.keyword_lost.text=item.item_lost
@@ -92,7 +89,7 @@ class CourseAdapter(private val context: Context, courseModelArrayList: ArrayLis
         try {
             Glide     //using Glide to display image from url
                 .with(context)
-                .load(item.image)
+                .load(item.image[0])
                 .centerCrop()
                 .placeholder(R.drawable.ic_baseline_person_24)
                 .into(holder.image_lost);

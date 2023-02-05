@@ -4,110 +4,284 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activities.Lost_Expanded_Description">
 
-    <ImageView
-        android:id="@+id/LostExpanded_Image"
-        android:layout_width="289dp"
-        android:layout_height="279dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/idRVCourse"
+        android:layout_width="match_parent"
+
+        android:layout_height="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.072"
-        app:srcCompat="@drawable/ic_baseline_person_24" />
-
-    <TextView
-        android:id="@+id/LostExpanded_Description"
-        android:layout_width="291dp"
-        android:layout_height="208dp"
-        android:layout_marginTop="36dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LostExpanded_Place"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/LostExpanded_Name"
-        android:layout_width="237dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="12dp"
-        android:text="TextView"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:textSize="19sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LostExpanded_Image"
-        app:layout_constraintVertical_bias="0.0" />
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:elevation="20dp"-->
+<!--        android:background="@color/white"-->
+<!--        android:backgroundTint="#D8EFFA"-->
+<!--        android:layout_marginBottom="-20dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/idRVCourse"-->
+<!--        tools:layout_editor_absoluteX="0dp" >-->
 
-    <TextView
-        android:id="@+id/LostExpanded_Place"
-        android:layout_width="198dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.204"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LostExpanded_Name"
-        app:layout_constraintVertical_bias="0.007" />
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
 
-    <TextView
-        android:id="@+id/LostExpanded_When"
-        android:layout_width="106dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textColor="#E91E63"
-        android:textSize="17dp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/LostExpanded_Place"
-        app:layout_constraintTop_toBottomOf="@+id/LostExpanded_Name"
-        app:layout_constraintVertical_bias="0.007" />
+<!--            <TextView-->
+<!--                android:id="@+id/LostExpanded_Name"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="sans-serif-medium"-->
 
-    <TextView
-        android:id="@+id/LostExpanded_Number"
-        android:layout_width="93dp"
-        android:layout_height="40dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.875"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LostExpanded_Description"
-        app:layout_constraintVertical_bias="0.542" />
+<!--                android:text="TextView"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textColor="#323131"-->
+<!--                android:textSize="22sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.119"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintVertical_bias="0.083" />-->
+<!--            <ScrollView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:id="@+id/scrollDesc"-->
+<!--                android:layout_height="163dp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:layout_marginRight="8dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/LostExpanded_Name">-->
+<!--            <TextView-->
+<!--                android:id="@+id/LostExpanded_Description"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="sans-serif-medium"-->
+<!--                android:text="TextView"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textColor="#3C3B3B"-->
+<!--                android:textSize="16sp"-->
+<!--                />-->
+<!--            </ScrollView>-->
 
-    <TextView
-        android:id="@+id/LostExpanded_ContactMe"
-        android:layout_width="166dp"
-        android:layout_height="44dp"
-        android:text="Contact Me"
-        android:textAlignment="center"
-        android:textColor="@color/purple_500"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/LostExpanded_Number"
-        app:layout_constraintHorizontal_bias="0.779"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LostExpanded_Description"
-        app:layout_constraintVertical_bias="0.55" />
+<!--            <TextView-->
+<!--                android:id="@+id/LostExpanded_When"-->
+<!--                android:layout_width="119dp"-->
+<!--                android:layout_height="33dp"-->
+<!--                android:fontFamily="sans-serif-medium"-->
+<!--                android:text="TextView"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textColor="#910909"-->
+<!--                android:textSize="18sp"-->
+<!--                android:textStyle="italic"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/scrollDesc"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.891"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/LostExpanded_Name"-->
+<!--                app:layout_constraintVertical_bias="0.861" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/LostExpanded_Place"-->
+<!--                android:layout_width="308dp"-->
+<!--                android:layout_height="33dp"-->
+<!--                android:fontFamily="sans-serif-medium"-->
+<!--                android:text="TextView"-->
+<!--                android:textColor="#292828"-->
+<!--                android:textSize="20dp"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/LostExpanded_When"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.0"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/LostExpanded_Name"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/LostExpanded_Name"-->
+<!--                app:layout_constraintVertical_bias="0.382" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/LostExpanded_Number"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="sans-serif-medium"-->
+<!--                android:text="TextView"-->
+<!--                android:layout_marginBottom="1dp"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textColor="#0C2BDC"-->
+<!--                android:textSize="14sp"-->
+<!--                android:textStyle="italic"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/LostExpanded_ContactMe"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/scrollDesc"-->
+<!--                app:layout_constraintHorizontal_bias="0.164"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/LostExpanded_ContactMe"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/LostExpanded_ContactMe"-->
+<!--                app:layout_constraintVertical_bias="1.0" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/LostExpanded_ContactMe"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Contact Me"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textColor="#F50057"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textStyle="italic"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/scrollDesc"-->
+<!--                app:layout_constraintHorizontal_bias="0.498"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/scrollDesc"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/scrollDesc"-->
+<!--                app:layout_constraintVertical_bias="0.505" />-->
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--    </androidx.cardview.widget.CardView>-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="-16dp"
+                tools:layout_editor_absoluteY="344dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayout2"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:hint="Name"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.055"
+                        tools:layout_editor_absoluteX="9dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:id="@+id/LostExpanded_Name"
+                            android:textStyle="bold"
+                            android:editable="false"
+                            android:singleLine="true">
+
+                        </com.google.android.material.textfield.TextInputEditText>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:hint="Place"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.842"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+                        app:layout_constraintVertical_bias="0.04">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:id="@+id/LostExpanded_Place"
+                            android:editable="false"
+                            android:singleLine="true">
+
+                        </com.google.android.material.textfield.TextInputEditText>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayout3"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:hint="Date"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.526"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+                        app:layout_constraintVertical_bias="0.034">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:id="@+id/LostExpanded_When"
+                            android:editable="false"
+                            android:singleLine="true">
+
+                        </com.google.android.material.textfield.TextInputEditText>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayout4"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:hint="Description"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.473"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
+                        app:layout_constraintVertical_bias="0.053">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:id="@+id/scrollDesc"
+                            android:editable="false">
+
+                        </com.google.android.material.textfield.TextInputEditText>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="30dp"
+                        android:backgroundTint="@color/black"
+                        android:text="Call ME"
+                        android:layout_marginBottom="10dp"
+                        android:id="@+id/LostExpanded_Number"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </ScrollView>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

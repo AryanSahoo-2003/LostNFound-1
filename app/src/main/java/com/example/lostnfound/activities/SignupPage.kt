@@ -3,30 +3,37 @@ package com.example.lostnfound.activities
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.net.NetworkCapabilities
 import android.net.Uri
-import android.opengl.Visibility
 import android.os.Bundle
 import android.provider.MediaStore
-import android.text.Editable
-import android.text.InputType
 import android.text.TextUtils
-import android.text.TextWatcher
-import android.text.method.PasswordTransformationMethod
-import android.view.View
+import android.util.Log
 import android.webkit.MimeTypeMap
+import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.widget.doOnTextChanged
+import com.bumptech.glide.Glide
 import com.example.lostnfound.R
 import com.example.lostnfound.firebase.firestoreclass
 import com.example.lostnfound.models.Users
-import com.google.firebase.auth.FirebaseAuth
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.FirebaseNetworkException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import kotlinx.android.synthetic.main.activity_signup_page.*
+import kotlinx.android.synthetic.main.activity_updateprofile.*
+import kotlinx.android.synthetic.main.new_signup.*
 
 
 class SignupPage : BaseActivity() {
@@ -41,71 +48,48 @@ class SignupPage : BaseActivity() {
     private lateinit var database: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signup_page)
-
-
-
-
-        var mask=1;
-        view_password.setOnClickListener{
-
-            if(mask==1){
-                register_password.inputType=InputType.TYPE_CLASS_TEXT
-                register_password.transformationMethod = null
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        setContentView(R.layout.new_signup)
+        findViewById<TextInputEditText>(R.id.register_password).doOnTextChanged { text, start, before, count ->
+            if(text!!.length<6){
+                Signup_button.isEnabled = false
+                findViewById<TextInputLayout>(R.id.password_layout).isHelperTextEnabled=true
+                Signup_button.setBackgroundColor(Color.BLACK)
             }
             else{
-                register_password.inputType=InputType.TYPE_MASK_CLASS
-                register_password.transformationMethod = PasswordTransformationMethod.getInstance()
+                Signup_button.setBackgroundColor(Color.rgb(18,37,143))
+                Signup_button.isEnabled = true
+                findViewById<TextInputLayout>(R.id.password_layout).isHelperTextEnabled=false
+
             }
-            mask=-1*mask;
         }
-
-
-        var mmask=1;
-        view_confirm_password.setOnClickListener{
-
-            if(mmask==1){
-                register_confirm_password.inputType=InputType.TYPE_CLASS_TEXT
-                register_confirm_password.transformationMethod = null
-            }
-            else{
-                register_confirm_password.inputType=InputType.TYPE_MASK_CLASS
-                register_confirm_password.transformationMethod = PasswordTransformationMethod.getInstance()
-            }
-            mmask=-1*mmask;
-        }
-
-
-
-        register_password.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) { }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s.toString().length < 6) {
-                    Signup_button.isEnabled = false
-//                    register_password.error = "Password must be at least 6 characters"
-                    valid_pass_text.visibility=View.VISIBLE
-                } else {
-                    Signup_button.isEnabled = true
-//                    register_password.error = null
-                    valid_pass_text.visibility=View.INVISIBLE
-                }
-            }
-        })
-
 
         Signup_button.setOnClickListener{
-            if(register_password.text.length<6){
+//            showProgressDialog("")
+            name=register_name.text.toString()
+            val roll=register_roll.text.toString().trim{it <=' '}
+            val email=register_insti_email.text.toString().trim{it <=' '}
+            val password=register_password.text.toString().trim{it <=' '}
+            val confirm=register_confirm_password.text.toString().trim{it <=' '}
+            val whatsapp=register_whatsapp.text.toString().trim{it <=' '}
+            val mobile=register_mobile.text.toString().trim{it <=' '}
+
+
+            if(validateForm(name,roll,email,password,confirm,whatsapp,mobile)){
+            if(register_password.text!!.length<6){
                 Toast.makeText(this,"Password must contain atleast 6 characters",Toast.LENGTH_SHORT).show()
             }
             else if(selectedImageFileUri!=null){
+                showProgressDialog("Please Wait")
                 uploadUserImage()
             }
-            else registerUser("")
+            else{
+                showProgressDialog("Please Wait")
+                registerUser("")
+            }
+            }
         }
-        Upload_profile_pic_button.setOnClickListener{
+        findViewById<Button>(R.id.Upload_profile_pic_button).setOnClickListener{
             if(ContextCompat.checkSelfPermission(
                     this,android.Manifest.permission.READ_EXTERNAL_STORAGE)
                 ==PackageManager.PERMISSION_GRANTED){
@@ -150,6 +134,10 @@ class SignupPage : BaseActivity() {
             selectedImageFileUri=data.data
             Toast.makeText(this,"Image selected successfully",Toast.LENGTH_SHORT).show()
         }
+        Glide.with(this)
+            .load(selectedImageFileUri)
+            .placeholder(R.drawable.ic_baseline_person_24)
+            .into(showImageSignup)
     }
 
     private fun registerUser(image:String){
@@ -161,22 +149,62 @@ class SignupPage : BaseActivity() {
         val whatsapp=register_whatsapp.text.toString().trim{it <=' '}
         val mobile=register_mobile.text.toString().trim{it <=' '}
 
-        if(validateForm(name,roll,email,password,confirm,whatsapp,mobile)){
-           showProgressDialog("Please Wait")
+
+
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).addOnCompleteListener(this,OnCompleteListener() {
 
                 hideProgressDialog()
                 if (it.isSuccessful) {
-                    val user= Users(name,roll, email, whatsapp, mobile,image)
-                    firestoreclass().registerUser(this,user)
+
+                    val user = Users(name, roll, email, whatsapp, mobile, image)
+                    firestoreclass().registerUser(this, user)
+                    auth.currentUser?.sendEmailVerification()?.addOnSuccessListener {
+                        Toast.makeText(
+                            this,
+                            "Please Verify your email to Login. A mail has been sent to your email",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+
                 }else{
+
 //                    TODO("handle various exceptions")
-                    Toast.makeText(this,
-                        it.exception.toString(), Toast.LENGTH_SHORT).show()
+                    when(it.exception){
+                        is FirebaseAuthUserCollisionException ->{
+                            Toast.makeText(this,
+                                "User is already registered :|", Toast.LENGTH_SHORT).show()
+                        }
+                        is FirebaseNetworkException->{
+                            Toast.makeText(this,
+                                "Poor internet connection :(", Toast.LENGTH_SHORT).show()
+                        }
+                        else->{
+                            Toast.makeText(this,
+                                it.exception.toString(), Toast.LENGTH_SHORT).show()
+
+                        }
+                    }
+
+
+
                 }
             })
+            // Your Firebase Firestore code here
+//        } catch (e: FirebaseFirestoreException) {
+//            when (e.code) {
+//                FirebaseFirestoreException.Code.ALREADY_EXISTS -> {
+//                    // Handle the collision exception and provide a custom message
+//                    Toast.makeText(this,"Firestore : Email already exists",Toast.LENGTH_SHORT).show()
+//                }
+//                else -> {
+//                    Toast.makeText(this,e.code.toString(),Toast.LENGTH_SHORT).show()
+//                    // Handle other exceptions
+//                    Log.e("Firestore", "An error occurred: ${e.message}")
+//                }
+//            }
+//        }
 
-        }
+
     }
 
     private fun validateForm(name:String,roll:String,email:String,password:String,confirm:String,whatsapp:String,mobile:String):Boolean {
@@ -276,18 +304,20 @@ class SignupPage : BaseActivity() {
         }
     }
         fun userRegisteredSuccess(){
+
             Toast.makeText(this@SignupPage,
             "You have been registered successfully",Toast.LENGTH_SHORT).show()
 
             auth.currentUser?.sendEmailVerification()?.addOnSuccessListener {
                 Toast.makeText(this,"Please Verify your email to Login. A mail has been sent to your email",Toast.LENGTH_LONG).show()
             }
+            startActivity(Intent(this,MainActivity::class.java))
             FirebaseAuth.getInstance().signOut()
             finish()
         }
 
     private fun uploadUserImage(){
-//        showProgressDialog("Please wait")
+//        showProgressDialog("Please Wait")
         if(selectedImageFileUri!=null){
             val sRef: StorageReference=FirebaseStorage.getInstance().reference
                 .child("User_Image"+System.currentTimeMillis()+"."+getFileExt(selectedImageFileUri))

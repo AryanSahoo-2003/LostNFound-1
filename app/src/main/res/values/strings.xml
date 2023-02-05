@@ -1,9 +1,11 @@
 <resources>
-    <string name="app_name">LostNFound</string>
+    <string name="app_name">Trak On</string>
     <string name="Signup">Don\'t have an account\?</string>
     <string name="F_Pass">Forgot Password?</string>
-    <string name="s_up">Signup</string>
+    <string name="s_up">Sign Up</string>
     <string name="r_Pass">Reset Password</string>
+    <string name="close">Close</string>
+    <string name="open">Open</string>
     <string name="login_button_text">LOGIN</string>
     <string name="enter_username">Enter Institute Email</string>
     <string name="enter_password">Enter Password</string>
@@ -31,4 +33,8 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="description">Description</string>
+    <string name="title_activity_navigation">Navigation</string>
+    <string name="found_by">Claimed By:</string>
+    <string name="latest_feed">Latest Feed</string>
 </resources>

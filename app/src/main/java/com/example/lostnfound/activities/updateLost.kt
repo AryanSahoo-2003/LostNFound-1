@@ -10,19 +10,29 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextUtils
+import android.util.Log
 import android.webkit.MimeTypeMap
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
 import com.example.lostnfound.R
 import com.example.lostnfound.models.Lost
+import com.google.android.gms.tasks.Task
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.StorageTask
+import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_fill_found_item.*
 import kotlinx.android.synthetic.main.activity_fill_lost_item.*
 import kotlinx.android.synthetic.main.activity_fill_lost_item.Lost_Msg
@@ -32,12 +42,17 @@ import kotlinx.android.synthetic.main.activity_fill_lost_item.Lost_where
 import kotlinx.android.synthetic.main.activity_update_found.*
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
-class updateLost : AppCompatActivity() {
+class updateLost : BaseActivity() {
     private lateinit var doc_id:String
     private var selectedImageFileUri: Uri? = null
-    private var imageUrl: String? =null
+    private var imageUrl: ArrayList<String> = ArrayList()
+    var alphaBeta : java.util.ArrayList<Uri> = java.util.ArrayList()
+    lateinit var courseRV: RecyclerView
+    lateinit var courseAdapter: ImageSliderAdapter
+    var test: ArrayList<String> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
@@ -52,9 +67,20 @@ class updateLost : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_found)
 
+        findViewById<TextView>(R.id.headerTitUpdate).text="LOST ITEM"
+        findViewById<TextInputLayout>(R.id.item_fill_layout).hint="Item Lost"
 
         findViewById<ImageView>(R.id.my_Found_when).setOnClickListener{
-            DatePickerDialog(this,datePicker,mycalender.get(Calendar.YEAR),mycalender.get(Calendar.MONTH),mycalender.get(Calendar.DAY_OF_MONTH)).show()
+            var alpha = DatePickerDialog(this,datePicker,mycalender.get(Calendar.YEAR),mycalender.get(Calendar.MONTH),mycalender.get(Calendar.DAY_OF_MONTH))
+            var beta =alpha.datePicker
+            beta.maxDate=System.currentTimeMillis()
+            alpha.show()
+        }
+        findViewById<TextInputEditText>(R.id.my_found_when_text).setOnClickListener{
+            var alpha = DatePickerDialog(this,datePicker,mycalender.get(Calendar.YEAR),mycalender.get(Calendar.MONTH),mycalender.get(Calendar.DAY_OF_MONTH))
+            var beta =alpha.datePicker
+            beta.maxDate=System.currentTimeMillis()
+            alpha.show()
         }
 
         val bundle:Bundle?=intent.extras
@@ -64,28 +90,92 @@ class updateLost : AppCompatActivity() {
         val date=bundle!!.getString("date")
         val keyword=bundle!!.getString("keyword")
         val desc=bundle!!.getString("desc")
-        val image=bundle!!.getString("image")
+        val image=bundle!!.getStringArrayList("image")
         doc_id= bundle!!.getString("doc_id").toString()
-//        Toast.makeText(this, "$name 123",Toast.LENGTH_LONG).show()
+//        var idk :ArrayList<String> = ArrayList()
+        var stringOfImages =bundle!!.getString("stringOfImages")
+        var kya : String=""
+        for(it in 0..stringOfImages!!.length-1){
+            if(stringOfImages[it]=='\n'){
+                imageUrl.add(kya)
+                kya=""
+            }
+            kya+=it.toString()
+        }
+        Log.d("hemlod",stringOfImages)
+        Log.d("hemlo",imageUrl.toString())
         Lost_Name.setText(name)
         Lost_Phone.setText(phone)
         Lost_where.setText(place)
         Lost_Msg.setText(desc)
         my_found_when_text.setText(date)
         my_found_item.setText(keyword)
-        if (image != null) {
-            imageUrl=image.toString()
-        }
+
+
+
+
         update_found_item.setOnClickListener {
-            if(imageUrl!=null && selectedImageFileUri==null){
-//                Toast.makeText(this,"Please select an image",Toast.LENGTH_SHORT).show()
-                updatefound(imageUrl!!.toString())
+            imageUrl.clear()
+            if(alphaBeta.isEmpty()){
+                Toast.makeText(this,"Please select an Image :[",Toast.LENGTH_SHORT).show()
             }
-            else if(selectedImageFileUri!=null){
-                uploadUserImage()
+            else{
+                val uploadedImageUrlTasks: List<Task<Uri>> = java.util.ArrayList()
+                lateinit var lastTask: StorageTask<UploadTask.TaskSnapshot>;
+                showProgressDialog("Please wait")
+                var count=0;
+                var l=alphaBeta.size-1;
+                for(i in 0.. alphaBeta.size-2){
+                    selectedImageFileUri=alphaBeta[i]
+                    Log.d("aryan",selectedImageFileUri.toString())
+                    val sRef: StorageReference = FirebaseStorage.getInstance().reference
+                        .child(
+                            "Lost_Item" + System.currentTimeMillis() + "." + getFileExt(
+                                selectedImageFileUri
+                            )
+                        )
+
+                    lastTask=sRef.putFile(selectedImageFileUri!!).addOnSuccessListener{
+                        Log.d("aryan","hue hue hue hue")
+                        sRef.downloadUrl
+                            .addOnCompleteListener {
+                                imageUrl.add(it.result!!.toString())
+                                Log.d("aryan",it.result!!.toString())
+                            }
+                    }.addOnFailureListener {
+                        count++;
+                    }
+                }
+
+
+
+                selectedImageFileUri=alphaBeta[l];
+                val sRef: StorageReference = FirebaseStorage.getInstance().reference
+                    .child(
+                        "Lost_Item" + System.currentTimeMillis() + "." + getFileExt(
+                            selectedImageFileUri
+                        )
+                    )
+
+                sRef.putFile(selectedImageFileUri!!).addOnSuccessListener{
+                    Log.d("aryan","hue hue hue hue")
+                    sRef.downloadUrl
+                        .addOnCompleteListener {
+                            imageUrl.add(it.result!!.toString())
+                            Log.d("aryan",it.result!!.toString())
+                            updatefound(imageUrl)
+                            Toast.makeText(this,"Total Image uploaded : ${imageUrl.size}",Toast.LENGTH_SHORT).show()
+                        }
+                }.addOnFailureListener {
+
+                }
             }
+
+
         }
         update_image_found.setOnClickListener {
+            alphaBeta.clear()
+            test.clear()
             if (ContextCompat.checkSelfPermission(
                     this, android.Manifest.permission.READ_EXTERNAL_STORAGE
                 )
@@ -130,20 +220,54 @@ class updateLost : AppCompatActivity() {
             Intent.ACTION_PICK,
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         )
+        gallery.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true)
         startActivityForResult(gallery, SignupPage.PICK_IMAGE_REQUEST_CODE)
     }
 
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
         if (resultCode == Activity.RESULT_OK
             && requestCode == SignupPage.PICK_IMAGE_REQUEST_CODE
-            && data!!.data != null
-        ) {
-            selectedImageFileUri = data.data
+        ) if(data!!.clipData!=null){;
+            for (i in 0 until data.clipData!!.itemCount) {
+                val imageUri = data.clipData!!.getItemAt(i).uri
+                if(alphaBeta.size <5)
+                {
+                    alphaBeta.add(imageUri)
+                }else{
+                    Toast.makeText(this, "Limit of 5 images reached", Toast.LENGTH_SHORT).show()
+                }
+            }
+            Toast.makeText(this,"Image Selected Successfully",Toast.LENGTH_SHORT).show()
         }
+        else if(data?.data != null) {
+            if(alphaBeta.size <5)
+            {
+                alphaBeta.add(data.data!!)
+
+            }else{
+                Toast.makeText(this, "Limit of 5 images reached", Toast.LENGTH_SHORT).show()
+            }
+            Toast.makeText(this,"Image Selected Successfully",Toast.LENGTH_SHORT).show()
+        }
+        var lsize = alphaBeta.size
+        for(i in 0..lsize-1){
+            test.add(alphaBeta[i].toString())
+        }
+        Log.d("aryan",test.toString())
+        courseRV = findViewById<RecyclerView>(R.id.updateRecylerView)
+        courseRV.setHasFixedSize(true)
+        courseRV.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL,false)
+        val snapHelper: SnapHelper = LinearSnapHelper()
+        courseRV.setOnFlingListener(null);
+        snapHelper.attachToRecyclerView(courseRV)
+        courseAdapter = ImageSliderAdapter(test)
+        courseRV.adapter = courseAdapter
+
     }
-    fun updatefound(image:String)
+    fun updatefound(image:ArrayList<String>)
     {
         val name = Lost_Name.text.toString()
         val phone = Lost_Phone.text.toString().trim { it <= ' ' }
@@ -164,9 +288,9 @@ class updateLost : AppCompatActivity() {
             FirebaseFirestore.getInstance().collection("lostitem").document(doc_id)
                 .update("item_lost", my_found_item.text.toString())
             FirebaseFirestore.getInstance().collection("lostitem").document(doc_id)
-                .update("image", image.toString()).addOnSuccessListener {
+                .update("image", imageUrl).addOnSuccessListener {
                     Toast.makeText(this,"Updates are successful",Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this,MyLostActivity::class.java))
+                    startActivity(Intent(this,TabsFillItem::class.java))
                     this.finish()
                 }
         }
@@ -221,29 +345,7 @@ class updateLost : AppCompatActivity() {
 
     private fun uploadUserImage() {
 //        showProgressDialog("Please wait")
-        if (selectedImageFileUri != null) {
-            val sRef: StorageReference = FirebaseStorage.getInstance().reference
-                .child(
-                    "Found_Item" + System.currentTimeMillis() + "." + getFileExt(
-                        selectedImageFileUri
-                    )
-                )
-            sRef.putFile(selectedImageFileUri!!).addOnSuccessListener {
 
-                sRef.downloadUrl
-                    .addOnCompleteListener {
-                        imageUrl = it.result!!.toString()
-                        updatefound(imageUrl!!)
-                    }
-
-            }.addOnFailureListener {
-                Toast.makeText(
-                    this,
-                    it.message,
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
     }
 
     private fun getFileExt(uri: Uri?):String?{

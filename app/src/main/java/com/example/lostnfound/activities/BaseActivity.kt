@@ -1,12 +1,14 @@
 package com.example.lostnfound.activities
 
 import android.app.Dialog
+import android.app.ProgressDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.airbnb.lottie.LottieAnimationView
 import com.example.lostnfound.R
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -14,22 +16,28 @@ import kotlinx.android.synthetic.main.dialog_progress.*
 
 open class BaseActivity : AppCompatActivity() {
     private var doubleBackToExitPressedONce=false
-    private lateinit var mProgressDialog:Dialog
+//    private lateinit var mProgressDialog:Dialog
+    lateinit var progressDialog : ProgressDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base)
+
+
+
     }
     fun showProgressDialog(text:String)
-    {
-        mProgressDialog= Dialog(this)
+    {   progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("Uploading Data")
+        progressDialog.setMessage("Application is loading, please wait")
+        progressDialog.setCanceledOnTouchOutside(false)
+        progressDialog.setCancelable(false)
+        progressDialog.show()
 
-        mProgressDialog.setContentView(R.layout.dialog_progress)
-        mProgressDialog.Progress_text.text=text
 
-        mProgressDialog.show()
     }
     fun hideProgressDialog(){
-        mProgressDialog.dismiss()
+//        mProgressDialog.dismiss()
+        progressDialog.dismiss()
     }
 
     fun getCurrentUserID(): String{

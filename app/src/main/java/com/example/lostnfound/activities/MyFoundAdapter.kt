@@ -3,15 +3,19 @@ package com.example.lostnfound.activities
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.inflate
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.lostnfound.R
+import com.example.lostnfound.databinding.ActivityMainBinding.inflate
 import com.example.lostnfound.models.Lost
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.item.view.del_button
@@ -41,25 +45,30 @@ class MyFoundAdapter(private val context: Context, courseModelArrayList: ArrayLi
             val item = courseModelArrayList[pos]
            if(flag==0){
                val builder = AlertDialog.Builder(context)
+               val dialogLayout : View =  LayoutInflater.from(this.context).inflate(R.layout.alert_dia,null)
+
+//               val inflate: LayoutInflater= LayoutInflater
                //set title for alert dialog
-               builder.setTitle("Delete")
+               builder.setTitle("Claimed")
                //set message for alert dialog
                builder.setMessage("Sure you want to delete?")
-               builder.setIcon(android.R.drawable.ic_dialog_alert)
-
+               val editname=dialogLayout.findViewById<EditText>(R.id.NameFounded)
+               val editRoll=dialogLayout.findViewById<EditText>(R.id.RollFound)
+//               builder.setIcon(android.R.drawable.ic_dialog_alert)
                builder.setPositiveButton("Yes") { dialogInterface, which ->
 
-                   FirebaseFirestore.getInstance().collection("founditem").document(item.item_id)
-                       .delete()
+
+                   FirebaseFirestore.getInstance().collection("founditem").document(item.item_id).update("delete",true)
                        .addOnSuccessListener {
-
-                           Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT)
-                               .show();
-
-                           context.startActivity(Intent(context, MyFoundActivity::class.java))
-                           MyFoundActivity().finish()
-
-//
+                           FirebaseFirestore.getInstance().collection("founditem").document(item.item_id).delete().addOnSuccessListener {
+                               Toast.makeText(context, "Item Removed Successfully", Toast.LENGTH_SHORT)
+                                   .show();
+                               FirebaseFirestore.getInstance().collection("archivefound").add(item).addOnSuccessListener {
+                                   FirebaseFirestore.getInstance().collection("archivefound").document(it.id).update("target_name",editname.text.toString())
+                                   FirebaseFirestore.getInstance().collection("archivefound").document(it.id).update("target_roll",editRoll.text.toString())
+                               }
+                               context.startActivity(Intent(context, Tabs::class.java))
+                           }
 
                        }.addOnFailureListener {
                            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
@@ -71,6 +80,8 @@ class MyFoundAdapter(private val context: Context, courseModelArrayList: ArrayLi
                val alertDialog: AlertDialog = builder.create()
                // Set other dialog properties
                alertDialog.setCancelable(false)
+               alertDialog.setView(dialogLayout)
+//               builder.show()
                alertDialog.show()
 
            }
@@ -82,6 +93,12 @@ class MyFoundAdapter(private val context: Context, courseModelArrayList: ArrayLi
                val keyword=item.item_lost
                        val desc=item.description
                        val image=item.image
+               var img1: String? =""
+
+               for(it in 0..image.size-1){
+                   img1+=image[it]
+                   img1+="\n"
+               }
 
                val intent = Intent(context, updateFound::class.java)
 
@@ -91,8 +108,11 @@ class MyFoundAdapter(private val context: Context, courseModelArrayList: ArrayLi
                intent.putExtra("date", date)
                intent.putExtra("keyword", keyword)
                intent.putExtra("desc", desc)
+               intent.putExtra("stringOfImages",img1)
                intent.putExtra("image", image)
                intent.putExtra("doc_id", item.item_id)
+               intent.putExtra("whichintent","FOUND ITEM")
+               intent.putExtra("helperwhich","Item Lost")
                context.startActivity(intent)
                 }
         }
@@ -111,7 +131,7 @@ class MyFoundAdapter(private val context: Context, courseModelArrayList: ArrayLi
         try {
             Glide     //using Glide to display image from url
                 .with(context)
-                .load(item.image)
+                .load(item.image[0])
                 .centerCrop()
                 .placeholder(R.drawable.ic_baseline_person_24)
                 .into(holder.image_lost);
@@ -133,7 +153,6 @@ class MyFoundAdapter(private val context: Context, courseModelArrayList: ArrayLi
         var place_lost: TextView = view.findViewById(R.id.place_lost_item)
         var desc_lost: TextView = view.findViewById(R.id.desc_lost_item)
 
-        //        var found_it_button: Button=view.findViewById(R.id.del_button)
         init {
             view.setOnClickListener {
                 listener.OnItemClick(adapterPosition)

@@ -45,21 +45,11 @@ class FoundAdapter(private val context: Context, courseModelArrayList: ArrayList
         return Viewholder(view,mlistener).listen { pos, type ->
             val item = courseModelArrayList[pos]
 
-//            Toast.makeText(context,item.name, Toast.LENGTH_SHORT).show()
 
             var sendto="bjhddh"
             var message=""
 
-            val input: String ="Found Item Claimed!!"
-//            val serviceIntent = Intent(context, ExampleService::class.java)
-//            serviceIntent.putExtra("inputExtra", input)
-//            ContextCompat.startForegroundService(context, serviceIntent)
-//            fun stopService(view: Intent) {
-//                val serviceIntent = Intent(context, ExampleService::class.java)
-//                stopService(serviceIntent)
-//            }
-//            MyFirebaseMessagingService().generateNotification("Item Claimed!!",item.name+"has claimed the item")
-            mFireStore.collection(Constants.USERS)
+             mFireStore.collection(Constants.USERS)
                 .document(getcurrentUserID()).get().addOnSuccessListener { document ->
                     val loggedInUser = document.toObject(Users::class.java)!!
                     message ="Dear "+item.name+",\n"+loggedInUser.name+" has claimed the found item.\nDescription:"+item.description+ "\n Email:"+loggedInUser.email+"\nPhone Number:"+loggedInUser.mobile+"\nWhatsapp:"+loggedInUser.whatsapp;
@@ -69,7 +59,7 @@ class FoundAdapter(private val context: Context, courseModelArrayList: ArrayList
                     sendto=item.user_email
 
                     val send = Intent(Intent.ACTION_SENDTO)
-                    val uriText = "mailto:" + Uri.encode("recipient@gmail.com") +
+                    val uriText = "mailto:" + Uri.encode(item.user_email) +
                             "?subject=" + Uri.encode(subject) +
                             "&body=" + Uri.encode(msg)
                     val uri = Uri.parse(uriText)
@@ -77,10 +67,7 @@ class FoundAdapter(private val context: Context, courseModelArrayList: ArrayList
                     send.data = uri
                     context.startActivity(Intent.createChooser(send, "Choose an Email client :"))
                 }
-
         }
-
-
     }
 
     fun filterList(filterlist: ArrayList<Lost>) {
@@ -104,7 +91,7 @@ class FoundAdapter(private val context: Context, courseModelArrayList: ArrayList
         try {
             Glide     //using Glide to display image from url
                 .with(context)
-                .load(item.image)
+                .load(item.image[0])
                 .centerCrop()
                 .placeholder(R.drawable.ic_baseline_person_24)
                 .into(holder.image_lost);

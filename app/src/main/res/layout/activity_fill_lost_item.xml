@@ -1,145 +1,280 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.FillLostItem"
-    tools:layout_editor_absoluteX="-12dp"
-    tools:layout_editor_absoluteY="-1dp">
+    tools:context=".activities.FillFoundItem"
+    tools:layout_editor_absoluteX="-3dp"
+    tools:layout_editor_absoluteY="-2dp">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/Lost_Name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/Lost_Phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/Lost_Phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Phone Number"
-        android:inputType="phone"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/Lost_item"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Lost_Name" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/name_fill_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="4dp"
+                android:hint="Name"
 
-    <EditText
-        android:id="@+id/Lost_where"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Where Lost"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/Lost_Msg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Lost_When_text" />
+                app:endIconMode="clear_text"
 
-    <EditText
-        android:id="@+id/Lost_Msg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Description"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/Lost_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Lost_where" />
+                app:layout_constraintBottom_toTopOf="@+id/phone_fill_layout"
 
-    <TextView
-        android:id="@+id/Lost_image"
-        android:layout_width="204dp"
-        android:layout_height="51dp"
-        android:gravity="center_vertical"
-        android:text=" Upload Images"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/update_found"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Lost_Msg" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.609"
+                app:startIconDrawable="@drawable/ic_baseline_person_24">
 
-    <Button
-        android:id="@+id/update_found"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        app:cornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.937" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/Lost_Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:singleLine="true"
+                    android:maxLength="30"
+                    android:maxLines="1"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageView
-        android:id="@+id/Lost_Image_butoon"
-        android:layout_width="51dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Lost_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.713"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/Lost_image"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/ic_baseline_cloud_upload_24" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phone_fill_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:hint="Phone"
+                app:counterEnabled="true"
+                app:counterMaxLength="10"
+                app:endIconMode="clear_text"
+                app:layout_constraintBottom_toTopOf="@+id/item_fill_layout"
 
-    <TextView
-        android:id="@+id/Lost_When_text"
-        android:layout_width="204dp"
-        android:layout_height="51dp"
-        android:gravity="center_vertical"
-        android:hint="When"
-        android:minHeight="48dp"
-        android:text="Select Date"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/Lost_where"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Lost_item" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.864"
+                app:startIconDrawable="@drawable/ic_baseline_local_phone_24">
 
-    <EditText
-        android:id="@+id/Lost_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Item Lost"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/Lost_When_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Lost_Phone" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/Lost_Phone"
+                    android:maxLength="10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:text=""
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageView
-        android:id="@+id/Lost_When"
-        android:layout_width="51dp"
-        android:layout_height="51dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Lost_When_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.713"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/Lost_When_text"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/calendar_image" />
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/when_fill_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_marginLeft="4dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="416dp"
+                android:hint="Select Date"
+
+                app:endIconMode="clear_text"
+                app:layout_constraintBottom_toTopOf="@+id/desc_fill_layout"
+
+                app:layout_constraintEnd_toStartOf="@+id/Lost_When"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.44"
+                app:startIconDrawable="@drawable/ic_baseline_calendar_today_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/Lost_When_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:maxLines="1"
+                    android:editable="false"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/where_fill_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="336dp"
+                android:layout_marginEnd="4dp"
+                android:hint="Where"
+                app:counterMaxLength="30"
+                app:counterEnabled="true"
+                app:endIconMode="clear_text"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:startIconDrawable="@drawable/ic_baseline_my_location_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/Lost_where"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:maxLength="30"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/desc_fill_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="500dp"
+                android:layout_marginEnd="4dp"
+                android:hint="Description"
+                app:counterEnabled="true"
+                app:counterMaxLength="450"
+                app:endIconMode="clear_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:startIconDrawable="@drawable/ic_baseline_description_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/Lost_Msg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="450"
+                    android:text=""
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/item_fill_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="188dp"
+                android:layout_marginEnd="4dp"
+                android:hint="Item Lost"
+
+                app:endIconMode="clear_text"
+                app:layout_constraintBottom_toTopOf="@+id/where_fill_layout"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.623"
+                app:startIconDrawable="@drawable/ic_baseline_item_turned_in_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/Lost_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:textSize="14sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/lost_image"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:backgroundTint="@color/CustomOr"
+                android:elevation="10dp"
+                android:text="Upload Pictures"
+                android:textSize="12sp"
+                app:cornerRadius="60dp"
+                app:elevation="10dp"
+                app:icon="@drawable/ic_baseline_cloud_upload_24"
+                app:layout_constraintBottom_toTopOf="@+id/update_found"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.071"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/desc_fill_layout"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/update_found"
+                android:layout_width="116dp"
+                android:layout_height="46dp"
+                android:backgroundTint="#12258F"
+                android:elevation="20dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="3"
+                android:shadowDy="1"
+                android:shadowRadius="10"
+                android:text="POST"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:cornerRadius="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.159"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/balsamiq_sans"
+                android:text="LOST ITEM"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toTopOf="@+id/name_fill_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.08" />
+
+            <ImageView
+                android:id="@+id/Lost_When"
+                android:layout_width="73dp"
+                android:layout_height="56dp"
+                app:layout_constraintBottom_toBottomOf="@+id/when_fill_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/when_fill_layout"
+                app:layout_constraintTop_toTopOf="@+id/when_fill_layout"
+                app:srcCompat="@drawable/calendar_image" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/shortImgRecyclerView"
+                android:layout_width="113dp"
+                android:layout_height="92dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/desc_fill_layout"
+                app:layout_constraintHorizontal_bias="0.452"
+                app:layout_constraintStart_toEndOf="@+id/lost_image"
+                app:layout_constraintTop_toBottomOf="@+id/desc_fill_layout"
+                app:layout_constraintVertical_bias="1.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

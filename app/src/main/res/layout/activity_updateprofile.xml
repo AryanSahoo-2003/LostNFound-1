@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.Updateprofile">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/name_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="4dp"
+        android:hint="Name"
+
+        app:endIconMode="clear_text"
+        app:layout_constraintBottom_toTopOf="@+id/roll_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconDrawable="@drawable/ic_baseline_person_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Update_Profile_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/roll_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:hint="Roll Number"
+        app:endIconMode="clear_text"
+        app:layout_constraintBottom_toTopOf="@+id/n_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_layout"
+        app:startIconDrawable="@drawable/ic_baseline_123_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Update_profile_roll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/n_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:hint="Phone"
+        app:prefixText="+91"
+        app:counterEnabled="true"
+        app:counterMaxLength="10"
+        app:endIconMode="clear_text"
+        app:layout_constraintBottom_toTopOf="@+id/whatsapp_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roll_layout"
+        app:startIconDrawable="@drawable/ic_baseline_local_phone_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Update_profile_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:text=""
+            android:maxLength="10"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/whatsapp_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:hint="Whatsapp"
+        app:counterMaxLength="10"
+        app:counterEnabled="true"
+        app:prefixText="+91"
+        app:endIconMode="clear_text"
+        app:layout_constraintBottom_toTopOf="@+id/Upload_profile_pic_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/n_layout"
+        app:startIconDrawable="@drawable/ic_baseline_chat_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Update_profile_whatsapp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:text=""
+            android:maxLength="10"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/Upload_profile_pic_button"
+        android:layout_width="wrap_content"
+        android:layout_height="54dp"
+        android:backgroundTint="@color/CustomOr"
+        android:elevation="10dp"
+        android:text="Upload Profile Picture"
+        android:textSize="12sp"
+        app:cornerRadius="60dp"
+        app:elevation="10dp"
+        app:icon="@drawable/ic_baseline_cloud_upload_24"
+        app:layout_constraintBottom_toTopOf="@+id/update_profile_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.947" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/update_profile_button"
+        android:layout_width="150dp"
+        android:layout_height="56dp"
+        android:backgroundTint="#12258F"
+        android:elevation="20dp"
+        android:shadowColor="@color/black"
+        android:shadowDx="3"
+        android:shadowDy="1"
+        android:shadowRadius="10"
+        android:text="Update"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:cornerRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.241"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.94" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="215dp"
+        android:layout_height="49dp"
+        android:fontFamily="@font/balsamiq_sans"
+        android:gravity="center"
+        android:text="UPDATE PROFILE"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/name_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.37" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/showImgProfile"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.379"
+        app:layout_constraintStart_toEndOf="@+id/Upload_profile_pic_button"
+        app:layout_constraintTop_toBottomOf="@+id/whatsapp_layout"
+        app:layout_constraintVertical_bias="0.652" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
