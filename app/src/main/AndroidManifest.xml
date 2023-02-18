@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.lostnfound">
+    package="com.iitp.trakon">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
 
     <application
         android:allowBackup="true"
@@ -19,7 +19,7 @@
         android:theme="@style/Theme.LostNFound"
         tools:targetApi="31">
         <activity
-            android:name=".activities.splash_screen"
+            android:name="com.iitp.trakon.activities.splash_screen"
             android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
@@ -28,32 +28,32 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.ArchieveTab"
+            android:name="com.iitp.trakon.activities.ArchieveTab"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.TabsFillItem"
+            android:name="com.iitp.trakon.activities.TabsFillItem"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.Tabs"
+            android:name="com.iitp.trakon.activities.Tabs"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.LostNFound.NoActionBar" />
         <activity
-            android:name=".activities.Updateprofile"
+            android:name="com.iitp.trakon.activities.Updateprofile"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.Lost_Expanded_Description"
+            android:name="com.iitp.trakon.activities.Lost_Expanded_Description"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.updateFound"
+            android:name="com.iitp.trakon.activities.updateFound"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.updateLost"
+            android:name="com.iitp.trakon.activities.updateLost"
             android:exported="false"
             android:screenOrientation="portrait" />
         <!--
@@ -72,60 +72,42 @@
             android:resource="@color/white" />
         <meta-data
             android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" /> <!-- <activity -->
-        <!-- android:name=".activities.MyFoundActivity" -->
-        <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name=".activities.MyLostActivity" -->
-        <!-- android:exported="false" /> -->
+            android:resource="@array/preloaded_fonts" />
         <activity
-            android:name=".activities.FillFoundItem"
+            android:name="com.iitp.trakon.activities.FillFoundItem"
             android:exported="false"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.LostNFound.NoActionBar" />
         <activity
-            android:name=".activities.FoundActivity"
+            android:name="com.iitp.trakon.activities.FoundActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.LostNFound.NoActionBar"
             tools:ignore="Instantiatable" />
         <activity
-            android:name=".activities.UpdatePassword"
+            android:name="com.iitp.trakon.activities.UpdatePassword"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.LostNFound.NoActionBar" />
         <activity
-            android:name=".activities.FillLostItem"
+            android:name="com.iitp.trakon.activities.FillLostItem"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.LostNFound.NoActionBar" />
         <activity
-            android:name=".activities.BaseActivity"
+            android:name="com.iitp.trakon.activities.BaseActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.SignupPage"
+            android:name="com.iitp.trakon.activities.SignupPage"
             android:exported="false"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.iitp.trakon.activities.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
         </activity>
-
-        <service
-            android:name=".activities.MyFirebaseMessagingService"
-            android:exported="false"
-            tools:ignore="Instantiatable">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
     </application>
 
 </manifest>
