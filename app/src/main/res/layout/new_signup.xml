@@ -18,12 +18,48 @@
         app:cornerRadius="60dp"
         app:elevation="10dp"
         app:icon="@drawable/ic_baseline_cloud_upload_24"
-        app:layout_constraintBottom_toTopOf="@+id/Signup_button"
+        app:layout_constraintBottom_toTopOf="@+id/new_signup_terms_condition_ll"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.025"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.985" />
+
+
+    <LinearLayout
+        app:layout_constraintBottom_toTopOf="@+id/Signup_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.995"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/new_signup_terms_condition_ll"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/new_signup_terms_condition_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I Accept the "
+            android:textColor="@color/black"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/new_signup_terms_condition_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/terms_and_conditions"
+            android:textColor="@color/blue"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/Signup_button"
