@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -112,6 +113,7 @@ class Updateprofile : BaseActivity() {
         ) {
             selectedImageFileUri = data.data
         }
+        showImgProfile.visibility= View.VISIBLE
         Glide.with(this)
             .load(selectedImageFileUri)
             .placeholder(R.drawable.ic_baseline_person_24)

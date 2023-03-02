@@ -1,5 +1,6 @@
 package com.iitp.trakon.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -72,9 +73,35 @@ class ArchieveLostFragment : Fragment() {
                 }
             }
         })
+
+
+
+
         linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         courseRV.layoutManager = linearLayoutManager
         courseRV.adapter = courseAdapter
+
+
+        courseAdapter.setOnItemClickListener(object : ArchieveLost.OnItemClickListener{
+            override fun OnItemClick(position: Int) {
+                var l=courseModelArrayList[position]
+                var alphaName = l.name
+                val lsize = l.image.size
+                //                Lost_Expanded_Description().setLostData(l.name,l.place,l.date_time,l.description,l.phone)
+                val intentToLostExpanded = Intent(context,Lost_Expanded_Description::class.java)
+                intentToLostExpanded.putExtra("lsize",lsize)
+                intentToLostExpanded.putExtra("name",alphaName)
+                intentToLostExpanded.putExtra("place",l.place)
+                intentToLostExpanded.putExtra("date",l.date_time)
+                intentToLostExpanded.putExtra("desc",l.description)
+                intentToLostExpanded.putExtra("phone",l.phone)
+                for(i in 0..lsize-1){
+                    intentToLostExpanded.putExtra("test"+i.toString(),l.image[i])
+                }
+                startActivity(intentToLostExpanded)
+//                Toast.makeText(this@LostActivity,"hihiih$position",Toast.LENGTH_SHORT).show()
+            }
+        })
 
         searchLzView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             android.widget.SearchView.OnQueryTextListener {

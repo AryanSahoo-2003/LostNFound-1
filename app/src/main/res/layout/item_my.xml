@@ -43,10 +43,10 @@
             android:textStyle="bold"
             cardView:layout_constraintBottom_toBottomOf="parent"
             cardView:layout_constraintEnd_toEndOf="parent"
-            cardView:layout_constraintHorizontal_bias="0.091"
+            cardView:layout_constraintHorizontal_bias="0.168"
             cardView:layout_constraintStart_toStartOf="parent"
             cardView:layout_constraintTop_toBottomOf="@+id/imgae_lost_item"
-            cardView:layout_constraintVertical_bias="0.113" />
+            cardView:layout_constraintVertical_bias="0.134" />
 
         <TextView
             android:id="@+id/mane_lost_item"
@@ -55,6 +55,7 @@
             android:text="TextView"
             android:textAlignment="center"
             android:textColor="@color/white"
+            android:textSize="16sp"
             android:textStyle="normal"
             cardView:layout_constraintBottom_toBottomOf="parent"
             cardView:layout_constraintEnd_toEndOf="@+id/keyword_lost_item"
@@ -126,12 +127,46 @@
             android:text="TextView"
             android:textAlignment="center"
             android:textColor="@color/white"
+            android:textSize="16sp"
             cardView:layout_constraintBottom_toBottomOf="parent"
             cardView:layout_constraintEnd_toEndOf="@+id/mane_lost_item"
             cardView:layout_constraintHorizontal_bias="0.0"
             cardView:layout_constraintStart_toStartOf="@+id/mane_lost_item"
             cardView:layout_constraintTop_toBottomOf="@+id/imgae_lost_item"
             cardView:layout_constraintVertical_bias="0.549" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            cardView:layout_constraintBottom_toBottomOf="@+id/keyword_lost_item"
+            cardView:layout_constraintEnd_toStartOf="@+id/keyword_lost_item"
+            cardView:layout_constraintHorizontal_bias="0.785"
+            cardView:layout_constraintStart_toStartOf="parent"
+            cardView:layout_constraintTop_toTopOf="@+id/keyword_lost_item"
+            cardView:srcCompat="@drawable/ic_baseline_assignment_turned_in_24" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            cardView:layout_constraintBottom_toBottomOf="@+id/mane_lost_item"
+            cardView:layout_constraintEnd_toStartOf="@+id/mane_lost_item"
+            cardView:layout_constraintHorizontal_bias="0.785"
+            cardView:layout_constraintStart_toStartOf="parent"
+            cardView:layout_constraintTop_toBottomOf="@+id/keyword_lost_item"
+            cardView:srcCompat="@drawable/ic_baseline_person_24" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            cardView:layout_constraintBottom_toBottomOf="@+id/place_lost_item"
+            cardView:layout_constraintEnd_toStartOf="@+id/place_lost_item"
+            cardView:layout_constraintHorizontal_bias="0.785"
+            cardView:layout_constraintStart_toStartOf="parent"
+            cardView:layout_constraintTop_toTopOf="@+id/place_lost_item"
+            cardView:srcCompat="@drawable/ic_baseline_gps_fixed_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

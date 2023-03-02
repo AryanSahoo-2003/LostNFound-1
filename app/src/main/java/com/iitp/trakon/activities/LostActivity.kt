@@ -11,11 +11,13 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.iitp.trakon.R
 import com.iitp.trakon.models.Lost
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.iitp.trakon.models.Users
 import java.lang.Integer.max
 import kotlin.properties.Delegates
 
@@ -46,7 +48,11 @@ class LostActivity :Fragment() {
 
 
         courseRV = rootview.findViewById<RecyclerView>(R.id.idRVCourse)
-
+  val uid= FirebaseAuth.getInstance().currentUser!!.uid
+        var detail: Users = Users()
+        FirebaseFirestore.getInstance().collection("users").document(uid).get().addOnSuccessListener {
+            detail = it.toObject(Users::class.java)!!
+        }
 
 
 
@@ -116,6 +122,9 @@ class LostActivity :Fragment() {
 
         rootview.findViewById<Button>(R.id.hllo).setOnClickListener{
             val intentFloat = Intent(context,FillLostItem::class.java)
+            intentFloat.putExtra("name",detail.name)
+            intentFloat.putExtra("whatsapp",detail.whatsapp)
+            intentFloat.putExtra("email",detail.email)
             startActivity(intentFloat)
         }
 

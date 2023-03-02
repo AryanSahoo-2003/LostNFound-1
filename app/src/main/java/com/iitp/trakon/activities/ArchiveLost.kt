@@ -27,11 +27,20 @@ class ArchieveLost(private val context: Context, courseModelArrayList: ArrayList
     RecyclerView.Adapter<ArchieveLost.Viewholder>() {
 
     private var courseModelArrayList: ArrayList<Lost>
+    private lateinit var mlistener : OnItemClickListener
+
+    interface OnItemClickListener{
+        fun OnItemClick(position:Int)
+    }
+
+    fun setOnItemClickListener(listener: ArchieveLost.OnItemClickListener){
+        mlistener = listener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArchieveLost.Viewholder {
         // to inflate the layout for each item of recycler view.
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.archive_iem, parent, false)
-        return Viewholder(view).listen { pos, type, flag ->
+        return Viewholder(view,mlistener).listen { pos, type, flag ->
             val item = courseModelArrayList[pos]
             if (flag == 0) {
                 val builder = AlertDialog.Builder(context)
@@ -153,7 +162,7 @@ class ArchieveLost(private val context: Context, courseModelArrayList: ArrayList
     }
 
 
-    class Viewholder(view: View) : RecyclerView.ViewHolder(view) {
+    class Viewholder(view: View,listener: ArchieveLost.OnItemClickListener) : RecyclerView.ViewHolder(view) {
         var image_lost: ImageView = view.findViewById(R.id.imgae_lost_item)
         var name_lost: TextView = view.findViewById(R.id.mane_lost_item)
         var keyword_lost: TextView = view.findViewById(R.id.keyword_lost_item)
@@ -164,6 +173,12 @@ class ArchieveLost(private val context: Context, courseModelArrayList: ArrayList
         var target_phone:TextView=view.findViewById(R.id.lost_by_phone)
         var block:Button=view.findViewById(R.id.blockuser)
         var remove:Button=view.findViewById(R.id.removeitem)
+
+        init{
+            view.setOnClickListener {
+                listener.OnItemClick(adapterPosition)
+            }
+        }
     }
 
     // Constructor

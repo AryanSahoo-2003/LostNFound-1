@@ -36,7 +36,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:queryHint=" Search Your Lost Item.........." />
+            app:queryHint=" Search Your Lost Item" />
     </androidx.cardview.widget.CardView>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idRVCourse"

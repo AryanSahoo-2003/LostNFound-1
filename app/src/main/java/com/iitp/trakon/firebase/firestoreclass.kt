@@ -50,15 +50,7 @@ class firestoreclass {
     }
     fun registerFoundItem(activity: FillFoundItem, userInfo: Lost){
         mFireStore.collection("founditem")
-            .add(userInfo).addOnSuccessListener { documentReference ->
-                documentReference.get()
-                    .addOnSuccessListener{ snapshot ->
-                        val timestamp = snapshot["timestamp"] as Timestamp
-                        val nanosec = timestamp.nanoseconds
-                        mFireStore.collection("lostitem")
-                            .document(documentReference.id)
-                            .update("timestamp", nanosec)
-                    }
+            .add(userInfo).addOnSuccessListener {
                 activity.FounditemRegistered()
             }.addOnFailureListener{
                 Log.e(activity.javaClass.simpleName,"Error")
