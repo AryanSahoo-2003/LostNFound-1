@@ -11,11 +11,13 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.iitp.trakon.R
 import com.iitp.trakon.models.Lost
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.iitp.trakon.models.Users
 import kotlin.properties.Delegates
 
 class FoundActivity : Fragment() {
@@ -43,7 +45,11 @@ class FoundActivity : Fragment() {
         val rootview=inflater.inflate(R.layout.activity_found, container, false)!!
         courseRV = rootview.findViewById<RecyclerView>(R.id.idRVCourse)
         searchView = rootview.findViewById(R.id.idSV)
-
+        val uid=FirebaseAuth.getInstance().currentUser!!.uid
+        var detail:Users =Users()
+        FirebaseFirestore.getInstance().collection("users").document(uid).get().addOnSuccessListener {
+            detail = it.toObject(Users::class.java)!!
+        }
         // Here, we have created new array list and added data to it
         courseModelArrayList = ArrayList()
         // we are initializing our adapter class and passing our arraylist to it.
@@ -107,7 +113,14 @@ class FoundActivity : Fragment() {
 
         rootview.findViewById<Button>(R.id.hllo).setOnClickListener{
             val intentFloat = Intent(context,FillFoundItem::class.java)
+
+
+               intentFloat.putExtra("name",detail.name)
+               intentFloat.putExtra("whatsapp",detail.whatsapp)
+               intentFloat.putExtra("email",detail.email)
+            Log.d("aryan",detail.toString())
             startActivity(intentFloat)
+
         }
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             android.widget.SearchView.OnQueryTextListener {

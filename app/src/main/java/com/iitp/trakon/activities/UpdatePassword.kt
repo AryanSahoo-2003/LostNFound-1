@@ -34,7 +34,7 @@ class UpdatePassword : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         var toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
-//        toolbar.navigationIcon!!.setVisible(false,false)
+
         button_update.setOnClickListener {
 
             if(confirm_new_pass.text.toString()==new_pass.text.toString()) {
@@ -114,6 +114,9 @@ class UpdatePassword : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                     FirebaseAuth.getInstance().signOut()
                     startActivity(Intent(this,MainActivity::class.java))
 //                islogin="0"
+                }
+                R.id.privacy_policy->{
+                    startActivity(Intent(this,PrivacyPolicy::class.java))
                 }
                 R.id.my_update_profile-> alpha()
             }
@@ -203,6 +206,9 @@ class UpdatePassword : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 FirebaseAuth.getInstance().signOut()
                 startActivity(Intent(this,MainActivity::class.java))
 //                islogin="0"
+            }
+            R.id.privacy_policy->{
+                startActivity(Intent(this,PrivacyPolicy::class.java))
             }
             R.id.my_update_profile-> alpha()
         }

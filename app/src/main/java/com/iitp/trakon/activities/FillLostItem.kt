@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import android.webkit.MimeTypeMap
 import android.widget.ImageView
 import android.widget.TextView
@@ -63,9 +64,20 @@ class FillLostItem : BaseActivity() {
             updateLabel(mycalender)
         }
 
+        val bundle:Bundle?=intent.extras
+        Log.d("aryan",bundle.toString())
+        val name_up=bundle!!.getString("name")
+        val phone_up= bundle!!.getString("whatsapp")
+        val email=bundle!!.getString("email")
+        if (name_up != null) {
+            Log.d("aryan",name_up)
+        }
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fill_lost_item)
-
+        Lost_Name.setText(name_up)
+        Lost_email.setText(email)
+        Lost_Phone.setText(phone_up)
         update_found.setOnClickListener{
 
             val name = Lost_Name.text.toString()
@@ -74,7 +86,7 @@ class FillLostItem : BaseActivity() {
             val description = Lost_Msg.text.toString()
             val date= Lost_When_text.text.toString()
             val fitem=Lost_item.text.toString()
-            if (validateLostForm(name, phone, place, description,date,fitem)) {
+            if (validateLostForm(name, phone, place, description,date,fitem,alphaBeta.size)) {
 
                 imageUrl.clear()
                 val uploadedImageUrlTasks: List<Task<Uri>> = ArrayList()
@@ -235,6 +247,7 @@ class FillLostItem : BaseActivity() {
         val snapHelper: SnapHelper = LinearSnapHelper()
         courseRV.setOnFlingListener(null);
         snapHelper.attachToRecyclerView(courseRV)
+        if(test.isNotEmpty()) {findViewById<RecyclerView>(R.id.shortImgRecyclerView).visibility= View.VISIBLE}
         courseAdapter = ImageSliderAdapter(test)
 
         courseRV.adapter = courseAdapter
@@ -269,7 +282,8 @@ class FillLostItem : BaseActivity() {
         where:String,
         descprition:String,
         date:String,
-        litem:String):Boolean {
+        litem:String,
+    imgsize:Int):Boolean {
         return when {//checking if the field are empty
             TextUtils.isEmpty(name.trim { it <= ' ' }) -> {
                 Toast.makeText(
@@ -322,6 +336,14 @@ class FillLostItem : BaseActivity() {
                 Toast.makeText(
                     this,
                     "Please Enter Description Of Item Lost.",
+                    Toast.LENGTH_SHORT
+                ).show()
+                false
+            }
+            (imgsize==0)->{
+                Toast.makeText(
+                    this,
+                    "Please Select an image.",
                     Toast.LENGTH_SHORT
                 ).show()
                 false

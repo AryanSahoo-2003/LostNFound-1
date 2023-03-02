@@ -1,15 +1,19 @@
 package com.iitp.trakon.activities
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
+import com.google.firebase.FirebaseNetworkException
 import com.iitp.trakon.R
 import com.iitp.trakon.firebase.firestoreclass
 import com.iitp.trakon.models.Users
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -47,6 +51,15 @@ class MainActivity : BaseActivity() {
 
 }
 
+    override fun showProgressDialog(text:String)
+    {   progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("LoggingIn User")
+        progressDialog.setMessage("Application is loading, please wait")
+        progressDialog.setCanceledOnTouchOutside(false)
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+    }
+
     private fun signInRegistered()
     {
         val email=Username.text.toString().trim{it <=' '}
@@ -68,8 +81,20 @@ class MainActivity : BaseActivity() {
                                 Toast.LENGTH_SHORT).show()
                         }
                     } else {
-                        Toast.makeText(baseContext, task.exception.toString(),
-                            Toast.LENGTH_SHORT).show()
+                        when(task.exception){
+                            is FirebaseAuthInvalidCredentialsException ->{
+                                Toast.makeText(this,
+                                    "Email or password is wrong :(", Toast.LENGTH_SHORT).show()
+                            }
+                            is FirebaseNetworkException ->{
+                                Toast.makeText(this,
+                                    "Poor internet connection :(", Toast.LENGTH_SHORT).show()
+                            }
+                            else->{
+                                Toast.makeText(baseContext, task.exception.toString(),
+                                    Toast.LENGTH_SHORT).show()
+                            }
+                        }
                     }
                 }
         }

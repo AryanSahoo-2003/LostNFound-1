@@ -1,6 +1,7 @@
 package com.iitp.trakon.activities
 
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -8,6 +9,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
+import android.view.View
 import android.webkit.MimeTypeMap
 import android.widget.Button
 import android.widget.Toast
@@ -130,6 +132,7 @@ class SignupPage : BaseActivity() {
             selectedImageFileUri=data.data
             Toast.makeText(this,"Image selected successfully",Toast.LENGTH_SHORT).show()
         }
+        showImageSignup.visibility=View.VISIBLE
         Glide.with(this)
             .load(selectedImageFileUri)
             .placeholder(R.drawable.ic_baseline_person_24)
@@ -286,19 +289,31 @@ class SignupPage : BaseActivity() {
                 ).show()
                 false
             }
-            !email.endsWith("@iitp.ac.in") ->{
-                Toast.makeText(
-                    this@SignupPage,
-                    "Invalid Institute Email",
-                    Toast.LENGTH_SHORT
-                ).show()
-                false
-            }
+//            !email.endsWith("@iitp.ac.in") ->{
+//                Toast.makeText(
+//                    this@SignupPage,
+//                    "Invalid Institute Email",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//                false
+//            }
             else -> {
                 true
             }
         }
     }
+
+    override fun showProgressDialog(text:String)
+    {   progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("Signing User")
+        progressDialog.setMessage("Application is loading, please wait")
+        progressDialog.setCanceledOnTouchOutside(false)
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+
+
+    }
+
         fun userRegisteredSuccess(){
 
             Toast.makeText(this@SignupPage,

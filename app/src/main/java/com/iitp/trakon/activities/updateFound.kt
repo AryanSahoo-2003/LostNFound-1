@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import android.webkit.MimeTypeMap
 import android.widget.ImageView
 import android.widget.TextView
@@ -213,6 +214,7 @@ class updateFound : BaseActivity() {
         )
         gallery.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true)
         startActivityForResult(gallery, SignupPage.PICK_IMAGE_REQUEST_CODE)
+
     }
 
     @Deprecated("Deprecated in Java")
@@ -254,6 +256,7 @@ class updateFound : BaseActivity() {
         val snapHelper: SnapHelper = LinearSnapHelper()
         courseRV.setOnFlingListener(null);
         snapHelper.attachToRecyclerView(courseRV)
+        if(test.isNotEmpty()) {updateRecylerView.visibility= View.VISIBLE}
         courseAdapter = ImageSliderAdapter(test)
         courseRV.adapter = courseAdapter
 
@@ -327,6 +330,7 @@ class updateFound : BaseActivity() {
                 ).show()
                 false
             }
+
             else -> {
                 true
             }

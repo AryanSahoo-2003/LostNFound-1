@@ -1,9 +1,11 @@
 package com.iitp.trakon.activities
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +15,7 @@ import com.iitp.trakon.models.Lost
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.iitp.trakon.models.Users
 
 class MyFoundActivity :Fragment() {
 
@@ -26,6 +29,11 @@ class MyFoundActivity :Fragment() {
 
         // Here, we have created new array list and added data to it
         val courseModelArrayList: ArrayList<Lost> = ArrayList()
+        val uid=FirebaseAuth.getInstance().currentUser!!.uid
+        var detail: Users = Users()
+        FirebaseFirestore.getInstance().collection("users").document(uid).get().addOnSuccessListener {
+            detail = it.toObject(Users::class.java)!!
+        }
         // we are initializing our adapter class and passing our arraylist to it.
         val courseAdapter = context?.let { MyFoundAdapter(it, courseModelArrayList) }!!
 
@@ -69,6 +77,20 @@ class MyFoundActivity :Fragment() {
         // in below two lines we are setting layoutmanager and adapter to our recycler view.
         courseRV.layoutManager = linearLayoutManager
         courseRV.adapter = courseAdapter
+
+        rootview.findViewById<Button>(R.id.hllo).setOnClickListener{
+            val intentFloat = Intent(context,FillFoundItem::class.java)
+
+
+            intentFloat.putExtra("name",detail.name)
+            intentFloat.putExtra("whatsapp",detail.whatsapp)
+            intentFloat.putExtra("email",detail.email)
+            Log.d("aryan",detail.toString())
+            startActivity(intentFloat)
+
+        }
+
+
         if (courseAdapter != null) {
             courseAdapter.setOnItemClickListener(object : MyFoundAdapter.OnItemClickListener{
                 override fun OnItemClick(position: Int) {
@@ -93,7 +115,4 @@ class MyFoundActivity :Fragment() {
         }
         return rootview
     }
-//    override fun onBackPressed(){
-//        startActivity(Intent(context,Navigation::class.java))
-//    }
 }

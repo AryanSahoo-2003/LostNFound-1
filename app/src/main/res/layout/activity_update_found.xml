@@ -211,8 +211,7 @@
                 app:elevation="10dp"
                 app:icon="@drawable/ic_baseline_cloud_upload_24"
                 app:layout_constraintBottom_toTopOf="@+id/update_found_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.071"
+                app:layout_constraintEnd_toStartOf="@+id/updateRecylerView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/desc_fill_layout"
                 app:layout_constraintVertical_bias="0.0" />
@@ -232,8 +231,7 @@
                 android:textSize="14sp"
                 app:cornerRadius="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.179"
+                app:layout_constraintEnd_toStartOf="@+id/updateRecylerView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
@@ -244,7 +242,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/balsamiq_sans"
-                android:text="hhhhh"
+                tools:text="hhhhh"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="normal"
@@ -266,15 +264,17 @@
                 app:srcCompat="@drawable/calendar_image" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/updateRecylerView"
                 android:layout_width="128dp"
                 android:layout_height="83dp"
-                android:id="@+id/updateRecylerView"
-                android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/desc_fill_layout"
-                app:layout_constraintStart_toEndOf="@+id/update_image_found"
-                app:layout_constraintTop_toBottomOf="@+id/desc_fill_layout" />
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/headerTitUpdate"
+                app:layout_constraintTop_toBottomOf="@+id/desc_fill_layout"
+                app:layout_constraintVertical_bias="0.551" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

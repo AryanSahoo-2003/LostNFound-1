@@ -22,7 +22,7 @@ open class BaseActivity : AppCompatActivity() {
 
 
     }
-    fun showProgressDialog(text:String)
+    open fun showProgressDialog(text:String)
     {   progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Uploading Data")
         progressDialog.setMessage("Application is loading, please wait")

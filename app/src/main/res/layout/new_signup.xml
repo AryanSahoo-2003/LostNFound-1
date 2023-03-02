@@ -7,276 +7,321 @@
     android:layout_marginEnd="8dp"
     android:layout_height="match_parent">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/Upload_profile_pic_button"
-        android:layout_width="wrap_content"
-        android:layout_height="54dp"
-        android:backgroundTint="@color/CustomOr"
-        android:elevation="10dp"
-        android:text="Upload Profile Picture"
-        android:textSize="12sp"
-        app:cornerRadius="60dp"
-        app:elevation="10dp"
-        app:icon="@drawable/ic_baseline_cloud_upload_24"
-        app:layout_constraintBottom_toTopOf="@+id/Signup_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.985" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/Signup_button"
-        android:layout_width="150dp"
-        android:layout_height="44dp"
-        android:backgroundTint="#12258F"
-        android:elevation="20dp"
-        android:shadowColor="@color/black"
-        android:shadowDx="3"
-        android:shadowDy="1"
-        android:shadowRadius="10"
-        android:text="Signup"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:cornerRadius="30dp"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.208"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout4"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Phone"
-        app:endIconMode="custom"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
-        app:errorIconDrawable="@drawable/ic_baseline_error_24"
-        app:layout_constraintBottom_toTopOf="@+id/Upload_profile_pic_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
-        app:prefixText="+91"
-        app:prefixTextColor="#ED6E19"
-        app:startIconDrawable="@drawable/ic_baseline_local_phone_24">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/register_mobile"
-            android:textSize="14sp"
-            android:inputType="phone"
-            android:singleLine="true"
-            android:maxLines="1"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:text="" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="match_parent">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/roll_layout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Roll Number"
-        app:startIconDrawable="@drawable/ic_baseline_123_24"
-        app:endIconMode="custom"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_layout"
-        tools:text="">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/Upload_profile_pic_button"
+                android:layout_width="wrap_content"
+                android:layout_height="54dp"
+                android:backgroundTint="@color/CustomOr"
+                android:elevation="10dp"
+                android:text="Upload Profile Picture"
+                android:textSize="12sp"
+                app:cornerRadius="60dp"
+                app:elevation="10dp"
+                app:icon="@drawable/ic_baseline_cloud_upload_24"
+                app:layout_constraintBottom_toTopOf="@+id/Signup_button"
+                app:layout_constraintEnd_toStartOf="@+id/showImageSignup"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.985" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/register_roll"
-            android:inputType="text"
-            android:maxLines="1"
-            android:textSize="14sp"
-            android:singleLine="true"
-            android:maxLength="9"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/Signup_button"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:backgroundTint="#12258F"
+                android:elevation="20dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="3"
+                android:shadowDy="1"
+                android:shadowRadius="10"
+                android:text="Signup"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:cornerRadius="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/showImageSignup"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.976" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/name_layout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-           android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
-        android:hint="Name"
-        app:endIconMode="clear_text"
-        app:layout_constraintBottom_toTopOf="@+id/roll_layout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout4"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:hint="Phone"
+                android:layout_marginBottom="10dp"
+                app:endIconMode="custom"
+                app:errorIconDrawable="@drawable/ic_baseline_error_24"
+                app:layout_constraintBottom_toTopOf="@+id/Upload_profile_pic_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
+                app:prefixText="+91"
+                app:prefixTextColor="#ED6E19"
+                app:startIconDrawable="@drawable/ic_baseline_local_phone_24">
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:startIconDrawable="@drawable/ic_baseline_person_24">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textSize="14sp"
+                    tools:text="" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/register_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:singleLine="true"
-            android:maxLines="1"
-            android:textSize="14sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/roll_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:hint="Roll Number"
+                android:layout_marginBottom="10dp"
+                app:endIconMode="custom"
+                app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name_layout"
+                app:startIconDrawable="@drawable/ic_baseline_123_24"
+                tools:text="">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout2"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Institute Email"
-        app:endIconMode="clear_text"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/password_layout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roll_layout"
-        app:startIconDrawable="@drawable/ic_baseline_local_post_office_24">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_roll"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:maxLength="9"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/register_insti_email"
-            android:textSize="14sp"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/name_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:hint="Name"
+                android:layout_marginBottom="10dp"
+                app:endIconMode="clear_text"
+                app:layout_constraintBottom_toTopOf="@+id/roll_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.49"
 
-    <!--    <Button-->
-    <!--        android:id="@+id/Signup_button"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="Button"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                app:startIconDrawable="@drawable/ic_baseline_person_24">
 
-    <!--        app:layout_constraintEnd_toStartOf="@+id/Upload_profile_pic_button"-->
-    <!--        app:layout_constraintHorizontal_bias="1.0"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"-->
-    <!--        app:layout_constraintVertical_bias="0.127" />-->
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textSize="14sp" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/password_layout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        app:counterEnabled="true"
-        app:endIconMode="password_toggle"
+            </com.google.android.material.textfield.TextInputLayout>
 
-        app:errorEnabled="true"
-        app:counterMaxLength="12"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout2"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Institute Email"
+                app:endIconMode="clear_text"
+                app:layout_constraintBottom_toTopOf="@+id/password_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/roll_layout"
+                app:startIconDrawable="@drawable/ic_baseline_local_post_office_24">
 
-        app:errorIconDrawable="@drawable/ic_baseline_error_24"
-        app:helperText="Password must contain atleast 6 characters"
-        app:helperTextTextColor="#DF0505"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
-        app:startIconDrawable="@drawable/ic_baseline_lock_24">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_insti_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/register_password"
-            android:layout_width="match_parent"
-            android:maxLength="12"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:textSize="14sp"
-            android:singleLine="true"
-            android:layout_height="match_parent" />
-    </com.google.android.material.textfield.TextInputLayout>
+            <!--    <Button-->
+            <!--        android:id="@+id/Signup_button"-->
+            <!--        android:layout_width="wrap_content"-->
+            <!--        android:layout_height="wrap_content"-->
+            <!--        android:text="Button"-->
+            <!--        app:layout_constraintBottom_toBottomOf="parent"-->
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout3"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Whatsapp"
-        app:endIconMode="custom"
-        app:errorIconDrawable="@drawable/ic_baseline_error_24"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-        app:prefixText="+91"
-        app:prefixTextColor="#ED6E19"
-        app:startIconDrawable="@drawable/ic_baseline_chat_24">
+            <!--        app:layout_constraintEnd_toStartOf="@+id/Upload_profile_pic_button"-->
+            <!--        app:layout_constraintHorizontal_bias="1.0"-->
+            <!--        app:layout_constraintStart_toStartOf="parent"-->
+            <!--        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"-->
+            <!--        app:layout_constraintVertical_bias="0.127" />-->
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/register_whatsapp"
-            android:layout_width="match_parent"
-            android:textSize="14sp"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:layout_height="match_parent"
-            android:inputType="phone" />
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:hint="Password"
+                android:layout_marginBottom="10dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="12"
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Confirm Password"
-        app:endIconMode="password_toggle"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_layout"
-        app:startIconDrawable="@drawable/ic_baseline_lock_24">
+                app:endIconMode="password_toggle"
+                app:errorEnabled="true"
+                app:errorIconDrawable="@drawable/ic_baseline_error_24"
+                app:helperText="Password must contain atleast 6 characters"
+                app:helperTextTextColor="#DF0505"
+                app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+                app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/register_confirm_password"
-            android:layout_width="match_parent"
-            android:textSize="14sp"
-            android:maxLines="1"
-            android:inputType="textPassword"
-            android:singleLine="true"
-            android:layout_height="match_parent" />
-    </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPassword"
+                    android:maxLength="12"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/balsamiq_sans"
-        android:text="REGISTER"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        android:textStyle="normal"
-        app:layout_constraintBottom_toTopOf="@+id/Upload_profile_pic_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.028" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout3"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Whatsapp"
+                android:layout_marginBottom="10dp"
+                app:endIconMode="custom"
+                app:errorIconDrawable="@drawable/ic_baseline_error_24"
+                app:layout_constraintBottom_toTopOf="@+id/textInputLayout4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+                app:prefixText="+91"
+                app:prefixTextColor="#ED6E19"
+                app:startIconDrawable="@drawable/ic_baseline_chat_24">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/showImageSignup"
-        android:layout_marginRight="3dp"
-        android:layout_marginLeft="3dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout4"
-        app:layout_constraintStart_toEndOf="@+id/Upload_profile_pic_button"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_whatsapp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:hint="Confirm Password"
+                android:layout_marginBottom="10dp"
+                app:endIconMode="password_toggle"
+                app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/password_layout"
+                app:startIconDrawable="@drawable/ic_baseline_lock_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_confirm_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/balsamiq_sans"
+                android:text="REGISTER"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toTopOf="@+id/Upload_profile_pic_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.028" />
+
+            <ImageView
+                android:id="@+id/showImageSignup"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="3dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayout4"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/textView5"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout4"
+                app:layout_constraintVertical_bias="0.529" />
+
+            <ImageView
+                android:id="@+id/gymkhana_logo"
+                android:layout_width="85dp"
+                android:layout_height="73dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.987"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/logo" />
+
+            <ImageView
+                android:id="@+id/imageView18"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.021"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/technical_society3" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

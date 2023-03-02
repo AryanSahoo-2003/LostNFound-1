@@ -30,7 +30,7 @@ class splash_screen : AppCompatActivity() {
         foundLottie.speed=1f
         val handler = Handler()
 
-        handler.postDelayed({ testToast() }, 8000)
+        handler.postDelayed({ testToast() }, 4000)
 
         FirebaseFirestore.getInstance().collection("founditem").get().addOnSuccessListener {
             for(document in it){

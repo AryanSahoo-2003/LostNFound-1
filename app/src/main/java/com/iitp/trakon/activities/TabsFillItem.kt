@@ -104,6 +104,9 @@ class TabsFillItem() : AppCompatActivity(),NavigationView.OnNavigationItemSelect
                     startActivity(Intent(this,MainActivity::class.java))
 
                 }
+                R.id.privacy_policy->{
+                    startActivity(Intent(this,PrivacyPolicy::class.java))
+                }
                 R.id.my_update_profile-> alpha()
             }
             drawerLayout.closeDrawers()
@@ -190,6 +193,10 @@ class TabsFillItem() : AppCompatActivity(),NavigationView.OnNavigationItemSelect
                 startActivity(Intent(this,MainActivity::class.java))
 //                islogin="0"
             }
+            R.id.privacy_policy->{
+                startActivity(Intent(this,PrivacyPolicy::class.java))
+            }
+
             R.id.my_update_profile-> alpha()
         }
         drawerLayout.closeDrawers()

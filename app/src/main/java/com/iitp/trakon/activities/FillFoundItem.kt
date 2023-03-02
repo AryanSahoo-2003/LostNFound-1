@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import android.webkit.MimeTypeMap
 import android.widget.ImageView
 import android.widget.TextView
@@ -36,6 +37,7 @@ import kotlinx.android.synthetic.main.activity_fill_lost_item.Lost_Name
 import kotlinx.android.synthetic.main.activity_fill_lost_item.Lost_Phone
 import kotlinx.android.synthetic.main.activity_fill_lost_item.update_found
 import kotlinx.android.synthetic.main.activity_fill_lost_item.Lost_where
+import kotlinx.android.synthetic.main.activity_update_found.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -62,8 +64,23 @@ class FillFoundItem : BaseActivity(){
             updateLabel(mycalender)
         }
 
+        val bundle:Bundle?=intent.extras
+        Log.d("aryan",bundle.toString())
+        val name_up=bundle!!.getString("name")
+        val phone_up= bundle!!.getString("whatsapp")
+        val email=bundle!!.getString("email")
+        if (name_up != null) {
+            Log.d("aryan",name_up)
+        }
+
+
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fill_found_item)
+
+        Lost_Name.setText(name_up)
+        Lost_Email.setText(email)
+        Lost_Phone.setText(phone_up)
         update_found.setOnClickListener {
             val name = Lost_Name.text.toString()
             val phone = Lost_Phone.text.toString().trim { it <= ' ' }
@@ -72,7 +89,7 @@ class FillFoundItem : BaseActivity(){
             val date= found_when_text.text.toString()
             val fitem=Found_Item.text.toString()
 
-            if (validateLostForm(name, phone, place, description,date,fitem)) {
+            if (validateLostForm(name, phone, place, description,date,fitem,alphaBeta.size)) {
                 imageUrl.clear()
                 val uploadedImageUrlTasks: List<Task<Uri>> = java.util.ArrayList()
                 lateinit var lastTask: StorageTask<UploadTask.TaskSnapshot>;
@@ -225,6 +242,7 @@ class FillFoundItem : BaseActivity(){
                 val snapHelper: SnapHelper = LinearSnapHelper()
                 courseRV.setOnFlingListener(null);
                 snapHelper.attachToRecyclerView(courseRV)
+                if(test.isNotEmpty()) {shortImgRecyclerView.visibility= View.VISIBLE}
                 courseAdapter = ImageSliderAdapter(test)
 
                 courseRV.adapter = courseAdapter
@@ -286,7 +304,8 @@ class FillFoundItem : BaseActivity(){
         where: String,
         descprition: String,
         date:String,
-        fitem:String
+        fitem:String,
+        imgsize:Int
     ): Boolean {
         return when {//checking if the field are empty
             TextUtils.isEmpty(name.trim { it <= ' ' }) -> {
@@ -341,6 +360,14 @@ class FillFoundItem : BaseActivity(){
                 Toast.makeText(
                     this,
                     "Please Enter Description Of Item Lost.",
+                    Toast.LENGTH_SHORT
+                ).show()
+                false
+            }
+            (imgsize==0)->{
+                Toast.makeText(
+                    this,
+                    "Please Select an image.",
                     Toast.LENGTH_SHORT
                 ).show()
                 false
