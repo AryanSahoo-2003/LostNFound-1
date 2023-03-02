@@ -37,4 +37,5 @@
     <string name="title_activity_navigation">Navigation</string>
     <string name="found_by">Claimed By:</string>
     <string name="latest_feed">Latest Feed</string>
+    <string name="terms_and_conditions"><u>Terms and Conditions</u></string>
 </resources>
