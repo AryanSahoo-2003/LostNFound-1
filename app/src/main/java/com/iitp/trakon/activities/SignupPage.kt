@@ -1,11 +1,8 @@
 package com.iitp.trakon.activities
 
 import android.app.Activity
-<<<<<<< HEAD
-import android.app.ProgressDialog
-=======
 import android.app.AlertDialog
->>>>>>> 674dce8446b34150171d292d385b2c80fc691af3
+import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -13,11 +10,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
-<<<<<<< HEAD
-import android.view.View
-=======
 import android.util.Log
->>>>>>> 674dce8446b34150171d292d385b2c80fc691af3
+import android.view.View
 import android.webkit.MimeTypeMap
 import android.widget.Button
 import android.widget.Toast
@@ -227,6 +221,15 @@ class SignupPage : BaseActivity() {
         alertDialog.show()
     }
 
+    override fun showProgressDialog(text:String)
+    {   progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("SigningIn User")
+        progressDialog.setMessage("Application is loading, please wait")
+        progressDialog.setCanceledOnTouchOutside(false)
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+    }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -260,7 +263,7 @@ class SignupPage : BaseActivity() {
             selectedImageFileUri = data.data
             Toast.makeText(this, "Image selected successfully", Toast.LENGTH_SHORT).show()
         }
-        showImageSignup.visibility=View.VISIBLE
+        showImageSignup.visibility= View.VISIBLE
         Glide.with(this)
             .load(selectedImageFileUri)
             .placeholder(R.drawable.ic_baseline_person_24)
@@ -431,8 +434,7 @@ class SignupPage : BaseActivity() {
                 ).show()
                 false
             }
-<<<<<<< HEAD
-//            !email.endsWith("@iitp.ac.in") ->{
+//            !email.endsWith("@iitp.ac.in") -> {
 //                Toast.makeText(
 //                    this@SignupPage,
 //                    "Invalid Institute Email",
@@ -440,37 +442,11 @@ class SignupPage : BaseActivity() {
 //                ).show()
 //                false
 //            }
-=======
-            !email.endsWith("@iitp.ac.in") -> {
-                Toast.makeText(
-                    this@SignupPage,
-                    "Invalid Institute Email",
-                    Toast.LENGTH_SHORT
-                ).show()
-                false
-            }
->>>>>>> 674dce8446b34150171d292d385b2c80fc691af3
             else -> {
                 true
             }
         }
     }
-<<<<<<< HEAD
-
-    override fun showProgressDialog(text:String)
-    {   progressDialog = ProgressDialog(this)
-        progressDialog.setTitle("Signing User")
-        progressDialog.setMessage("Application is loading, please wait")
-        progressDialog.setCanceledOnTouchOutside(false)
-        progressDialog.setCancelable(false)
-        progressDialog.show()
-
-
-    }
-
-        fun userRegisteredSuccess(){
-=======
->>>>>>> 674dce8446b34150171d292d385b2c80fc691af3
 
     fun userRegisteredSuccess() {
 
@@ -522,5 +498,4 @@ class SignupPage : BaseActivity() {
         return MimeTypeMap.getSingleton().getExtensionFromMimeType(contentResolver.getType(uri!!))
     }
 }
-
 

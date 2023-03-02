@@ -7,80 +7,9 @@
     android:layout_marginEnd="8dp"
     android:layout_height="match_parent">
 
-<<<<<<< HEAD
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-=======
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/Upload_profile_pic_button"
-        android:layout_width="wrap_content"
-        android:layout_height="54dp"
-        android:backgroundTint="@color/CustomOr"
-        android:elevation="10dp"
-        android:text="Upload Profile Picture"
-        android:textSize="12sp"
-        app:cornerRadius="60dp"
-        app:elevation="10dp"
-        app:icon="@drawable/ic_baseline_cloud_upload_24"
-        app:layout_constraintBottom_toTopOf="@+id/new_signup_terms_condition_ll"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.985" />
-
-
-    <LinearLayout
-        app:layout_constraintBottom_toTopOf="@+id/Signup_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.995"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/new_signup_terms_condition_ll"
-        android:orientation="horizontal">
-
-        <CheckBox
-            android:id="@+id/new_signup_terms_condition_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="I Accept the "
-            android:textColor="@color/black"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/new_signup_terms_condition_link"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/terms_and_conditions"
-            android:textColor="@color/blue"
-            android:textSize="16sp"/>
-
-    </LinearLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/Signup_button"
-        android:layout_width="150dp"
-        android:layout_height="44dp"
-        android:backgroundTint="#12258F"
-        android:elevation="20dp"
-        android:shadowColor="@color/black"
-        android:shadowDx="3"
-        android:shadowDy="1"
-        android:shadowRadius="10"
-        android:text="Signup"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:cornerRadius="30dp"
->>>>>>> 674dce8446b34150171d292d385b2c80fc691af3
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,6 +36,40 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.985" />
 
+            <LinearLayout
+                android:id="@+id/new_signup_terms_condition_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="56dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Upload_profile_pic_button">
+
+                <CheckBox
+                    android:id="@+id/new_signup_terms_condition_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I Accept the "
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/new_signup_terms_condition_link"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/terms_and_conditions"
+                    android:textColor="@color/blue"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/Signup_button"
                 android:layout_width="150dp"
@@ -123,9 +86,10 @@
                 app:cornerRadius="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/showImageSignup"
+                app:layout_constraintHorizontal_bias="0.505"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.976" />
+                app:layout_constraintVertical_bias="0.912" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout4"
@@ -134,13 +98,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
-                android:hint="Phone"
                 android:layout_marginBottom="10dp"
+                android:hint="Phone"
                 app:endIconMode="custom"
                 app:errorIconDrawable="@drawable/ic_baseline_error_24"
                 app:layout_constraintBottom_toTopOf="@+id/Upload_profile_pic_button"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
                 app:prefixText="+91"
@@ -165,8 +129,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
-                android:hint="Roll Number"
                 android:layout_marginBottom="10dp"
+                android:hint="Roll Number"
                 app:endIconMode="custom"
                 app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -193,8 +157,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
-                android:hint="Name"
                 android:layout_marginBottom="10dp"
+                android:hint="Name"
                 app:endIconMode="clear_text"
                 app:layout_constraintBottom_toTopOf="@+id/roll_layout"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -260,8 +224,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
-                android:hint="Password"
                 android:layout_marginBottom="10dp"
+                android:hint="Password"
                 app:counterEnabled="true"
                 app:counterMaxLength="12"
 
@@ -292,8 +256,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Whatsapp"
                 android:layout_marginBottom="10dp"
+                android:hint="Whatsapp"
                 app:endIconMode="custom"
                 app:errorIconDrawable="@drawable/ic_baseline_error_24"
                 app:layout_constraintBottom_toTopOf="@+id/textInputLayout4"
@@ -321,8 +285,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
-                android:hint="Confirm Password"
                 android:layout_marginBottom="10dp"
+                android:hint="Confirm Password"
                 app:endIconMode="password_toggle"
                 app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -344,10 +308,10 @@
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/balsamiq_sans"
-                android:text="REGISTER"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:fontFamily="@font/balsamiq_sans"
+                android:text="REGISTER"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="normal"
@@ -360,8 +324,8 @@
 
             <ImageView
                 android:id="@+id/showImageSignup"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="132dp"
+                android:layout_height="105dp"
                 android:layout_marginTop="3dp"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -369,7 +333,7 @@
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/textView5"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout4"
-                app:layout_constraintVertical_bias="0.529" />
+                app:layout_constraintVertical_bias="0.095" />
 
             <ImageView
                 android:id="@+id/gymkhana_logo"
