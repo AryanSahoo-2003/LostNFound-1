@@ -223,8 +223,8 @@ class SignupPage : BaseActivity() {
 
     override fun showProgressDialog(text:String)
     {   progressDialog = ProgressDialog(this)
-        progressDialog.setTitle("SigningIn User")
-        progressDialog.setMessage("Application is loading, please wait")
+        progressDialog.setTitle("Registering User")
+        progressDialog.setMessage("Please wait...")
         progressDialog.setCanceledOnTouchOutside(false)
         progressDialog.setCancelable(false)
         progressDialog.show()
@@ -299,7 +299,6 @@ class SignupPage : BaseActivity() {
 
                 } else {
 
-//                    TODO("handle various exceptions")
                     when (it.exception) {
                         is FirebaseAuthUserCollisionException -> {
                             Toast.makeText(
@@ -316,7 +315,7 @@ class SignupPage : BaseActivity() {
                         else -> {
                             Toast.makeText(
                                 this,
-                                it.exception.toString(), Toast.LENGTH_SHORT
+                                "Some Error Occurred!", Toast.LENGTH_SHORT
                             ).show()
 
                         }
@@ -325,21 +324,6 @@ class SignupPage : BaseActivity() {
 
                 }
             })
-        // Your Firebase Firestore code here
-//        } catch (e: FirebaseFirestoreException) {
-//            when (e.code) {
-//                FirebaseFirestoreException.Code.ALREADY_EXISTS -> {
-//                    // Handle the collision exception and provide a custom message
-//                    Toast.makeText(this,"Firestore : Email already exists",Toast.LENGTH_SHORT).show()
-//                }
-//                else -> {
-//                    Toast.makeText(this,e.code.toString(),Toast.LENGTH_SHORT).show()
-//                    // Handle other exceptions
-//                    Log.e("Firestore", "An error occurred: ${e.message}")
-//                }
-//            }
-//        }
-
 
     }
 
@@ -434,14 +418,14 @@ class SignupPage : BaseActivity() {
                 ).show()
                 false
             }
-//            !email.endsWith("@iitp.ac.in") -> {
-//                Toast.makeText(
-//                    this@SignupPage,
-//                    "Invalid Institute Email",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//                false
-//            }
+            !email.endsWith("@iitp.ac.in") -> {
+                Toast.makeText(
+                    this@SignupPage,
+                    "Invalid Institute Email",
+                    Toast.LENGTH_SHORT
+                ).show()
+                false
+            }
             else -> {
                 true
             }

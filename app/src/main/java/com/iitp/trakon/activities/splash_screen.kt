@@ -53,13 +53,15 @@ class splash_screen : AppCompatActivity() {
                 }
             }
         }
-
-
     }
     fun testToast(){
         if(!checkForInternet(this)){
-            Toast.makeText(this,"Please connect to the internet :<",Toast.LENGTH_SHORT).show()
-            System.exit(0)
+
+            Toast.makeText(this,"Please connect to the internet :<",Toast.LENGTH_LONG).show()
+             lostLottie.pauseAnimation()
+            foundLottie.pauseAnimation()
+              return
+//            System.exit(0)
         }
         var sharedPreferences: SharedPreferences =getSharedPreferences("logindata", MODE_PRIVATE);
         var editorShared: SharedPreferences.Editor=sharedPreferences.edit();

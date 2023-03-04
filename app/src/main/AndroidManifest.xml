@@ -16,10 +16,16 @@
         android:roundIcon="@mipmap/real_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.LostNFound"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
             android:name=".activities.PrivacyPolicy"
-            android:exported="false" />
+            android:configChanges="orientation|screenSize"
+            android:exported="false" >
+            <meta-data
+                android:name="android.webkit.WebView.EnableSafeBrowsing"
+                android:value="true" />
+        </activity>
         <activity
             android:name=".activities.splash_screen"
             android:exported="true"

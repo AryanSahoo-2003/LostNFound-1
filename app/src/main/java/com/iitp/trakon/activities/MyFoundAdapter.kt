@@ -123,7 +123,7 @@ class MyFoundAdapter(private val context: Context, courseModelArrayList: ArrayLi
     fun showProgressDialog(text:String)
     {   progressDialog = ProgressDialog(this.context)
         progressDialog.setTitle("Deleting Post")
-        progressDialog.setMessage("Application is loading, please wait")
+        progressDialog.setMessage("Please wait...")
         progressDialog.setCanceledOnTouchOutside(false)
         progressDialog.setCancelable(false)
         progressDialog.show()

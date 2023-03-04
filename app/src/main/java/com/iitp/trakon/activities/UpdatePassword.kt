@@ -1,5 +1,6 @@
 package com.iitp.trakon.activities
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +25,7 @@ import java.io.IOException
 
 class UpdatePassword : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     lateinit var toggle : ActionBarDrawerToggle
+    lateinit var progressDialog : ProgressDialog
     private val mFireStore= FirebaseFirestore.getInstance()
     protected lateinit var  drawerLayout : DrawerLayout
     lateinit var islogin:String
@@ -49,7 +51,7 @@ class UpdatePassword : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                         startActivity(Intent(this,Tabs::class.java))
                         this.finish()
                     } else {
-                        Toast.makeText(this, task.exception.toString(), Toast.LENGTH_LONG).show()
+                        Toast.makeText(this,"Please Login again and then try !!", Toast.LENGTH_LONG).show()
                         Log.e("aryan",task.exception.toString())
                     }
                 }
@@ -62,6 +64,14 @@ class UpdatePassword : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
         }
         firestoreclass().signInUser(this)
+        fun showProgressDialog(text:String)
+        {   progressDialog = ProgressDialog(this)
+            progressDialog.setTitle("Updating Password")
+            progressDialog.setMessage("Please wait...")
+            progressDialog.setCanceledOnTouchOutside(false)
+            progressDialog.setCancelable(false)
+            progressDialog.show()
+        }
 
         drawerLayout = findViewById(R.id.navigationBar)
         val navView : NavigationView = findViewById(R.id.navView)

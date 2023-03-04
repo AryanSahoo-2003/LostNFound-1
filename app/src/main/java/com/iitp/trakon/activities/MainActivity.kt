@@ -37,11 +37,11 @@ class MainActivity : BaseActivity() {
                     if (it.isSuccessful) {
                         Toast.makeText(this, "Email sent", Toast.LENGTH_SHORT).show()
                     } else {
-                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Some Error Occurred !", Toast.LENGTH_SHORT).show()
                     }
                 }
             } else {
-                Toast.makeText(this, "Empty fields are not allowed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Empty Email field are not allowed", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -53,8 +53,8 @@ class MainActivity : BaseActivity() {
 
     override fun showProgressDialog(text:String)
     {   progressDialog = ProgressDialog(this)
-        progressDialog.setTitle("LoggingIn User")
-        progressDialog.setMessage("Application is loading, please wait")
+        progressDialog.setTitle("Verifying Credentials")
+        progressDialog.setMessage("Please wait...")
         progressDialog.setCanceledOnTouchOutside(false)
         progressDialog.setCancelable(false)
         progressDialog.show()
@@ -84,14 +84,14 @@ class MainActivity : BaseActivity() {
                         when(task.exception){
                             is FirebaseAuthInvalidCredentialsException ->{
                                 Toast.makeText(this,
-                                    "Email or password is wrong :(", Toast.LENGTH_SHORT).show()
+                                    "Email or password is invalid :|", Toast.LENGTH_SHORT).show()
                             }
                             is FirebaseNetworkException ->{
                                 Toast.makeText(this,
                                     "Poor internet connection :(", Toast.LENGTH_SHORT).show()
                             }
                             else->{
-                                Toast.makeText(baseContext, task.exception.toString(),
+                                Toast.makeText(baseContext, "Some Error Occurred !",
                                     Toast.LENGTH_SHORT).show()
                             }
                         }

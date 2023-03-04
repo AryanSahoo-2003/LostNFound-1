@@ -30,22 +30,23 @@
                 app:cornerRadius="60dp"
                 app:elevation="10dp"
                 app:icon="@drawable/ic_baseline_cloud_upload_24"
-                app:layout_constraintBottom_toTopOf="@+id/Signup_button"
+                app:layout_constraintBottom_toTopOf="@+id/new_signup_terms_condition_ll"
                 app:layout_constraintEnd_toStartOf="@+id/showImageSignup"
+                app:layout_constraintHorizontal_bias="0.512"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.985" />
+                app:layout_constraintVertical_bias="1.0" />
 
             <LinearLayout
                 android:id="@+id/new_signup_terms_condition_ll"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="56dp"
+                android:layout_width="304dp"
+                android:layout_height="42dp"
+                android:layout_marginTop="625dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Upload_profile_pic_button">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <CheckBox
                     android:id="@+id/new_signup_terms_condition_checkbox"
@@ -74,6 +75,7 @@
                 android:id="@+id/Signup_button"
                 android:layout_width="150dp"
                 android:layout_height="48dp"
+                android:layout_marginTop="6dp"
                 android:backgroundTint="#12258F"
                 android:elevation="20dp"
                 android:shadowColor="@color/black"
@@ -84,12 +86,10 @@
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 app:cornerRadius="30dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/showImageSignup"
-                app:layout_constraintHorizontal_bias="0.505"
+                app:layout_constraintHorizontal_bias="0.506"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.912" />
+                app:layout_constraintTop_toBottomOf="@+id/new_signup_terms_condition_ll" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout4"
