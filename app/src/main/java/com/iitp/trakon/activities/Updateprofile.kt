@@ -1,6 +1,7 @@
 package com.iitp.trakon.activities
 
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -118,6 +119,15 @@ class Updateprofile : BaseActivity() {
             .load(selectedImageFileUri)
             .placeholder(R.drawable.ic_baseline_person_24)
             .into(showImgProfile)
+    }
+
+    override fun showProgressDialog(text:String)
+    {   progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("Updating Profile")
+        progressDialog.setMessage("Please wait...")
+        progressDialog.setCanceledOnTouchOutside(false)
+        progressDialog.setCancelable(false)
+        progressDialog.show()
     }
 
     private fun uploadUserImage() {

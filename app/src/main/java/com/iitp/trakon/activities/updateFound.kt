@@ -2,6 +2,7 @@ package com.iitp.trakon.activities
 
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -190,6 +191,15 @@ class updateFound : BaseActivity() {
         val sdf = SimpleDateFormat(myFormat,Locale.UK)
         findViewById<TextView>(R.id.my_found_when_text).setText(sdf.format(mycalender.time))
 
+    }
+
+    override fun showProgressDialog(text:String)
+    {   progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("Updating Post")
+        progressDialog.setMessage("Please wait...")
+        progressDialog.setCanceledOnTouchOutside(false)
+        progressDialog.setCancelable(false)
+        progressDialog.show()
     }
 
     override fun onRequestPermissionsResult(

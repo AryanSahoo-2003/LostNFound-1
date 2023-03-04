@@ -24,8 +24,8 @@ open class BaseActivity : AppCompatActivity() {
     }
     open fun showProgressDialog(text:String)
     {   progressDialog = ProgressDialog(this)
-        progressDialog.setTitle("Uploading Data")
-        progressDialog.setMessage("Application is loading, please wait")
+        progressDialog.setTitle("Uploading Post")
+        progressDialog.setMessage("Please wait...")
         progressDialog.setCanceledOnTouchOutside(false)
         progressDialog.setCancelable(false)
         progressDialog.show()

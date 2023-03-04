@@ -1,10 +1,16 @@
 package com.iitp.trakon.activities
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -35,10 +41,31 @@ class PrivacyPolicy : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
         var alpha= privacy_web
         alpha.webViewClient= WebViewClient()
-        alpha.loadUrl("https://stc.iitp.ac.in/TrackOn/Privacy.html")
+
+        if(checkForInternet(this))
+        {
+            alpha.loadUrl("https://stc.iitp.ac.in/TrackOn/Privacy.html")
+        }
+        else{
+            alpha.loadUrl("file:///android_asset/no_internet.html")
+        }
+
+
         alpha.settings.javaScriptEnabled=true
         alpha.settings.builtInZoomControls=true;
-        alpha.settings.displayZoomControls=true
+        alpha.settings.displayZoomControls=false
+        alpha.settings.allowFileAccess=false
+        alpha.settings.domStorageEnabled=true;
+        alpha.settings.setRenderPriority(WebSettings.RenderPriority.HIGH)
+        alpha.settings.saveFormData=true;
+        alpha.settings.useWideViewPort=true;
+        alpha.settings.savePassword=true;
+        alpha.settings.cacheMode=WebSettings.LOAD_DEFAULT
+        alpha.settings.setGeolocationEnabled(true)
+        alpha.settings.allowContentAccess=true
+        alpha.settings.loadsImagesAutomatically=true
+        alpha.scrollBarStyle= View.SCROLLBARS_INSIDE_OVERLAY;
+
 
 
     drawerLayout = findViewById(R.id.navigationBar)
@@ -195,4 +222,35 @@ override fun onNavigationItemSelected(item: MenuItem): Boolean {
     drawerLayout.closeDrawers()
     return true
 }
+    private fun checkForInternet(context: Context): Boolean {
+
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            // Returns a Network object corresponding to
+            // the currently active default data network.
+            val network = connectivityManager.activeNetwork ?: return false
+
+            // Representation of the capabilities of an active network.
+            val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
+
+            return when {
+                // Indicates this network uses a Wi-Fi transport,
+                // or WiFi has network connectivity
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+
+                // else return false
+                else -> false
+            }
+        } else {
+            // if the android version is below M
+            @Suppress("DEPRECATION") val networkInfo =
+                connectivityManager.activeNetworkInfo ?: return false
+            @Suppress("DEPRECATION")
+            return networkInfo.isConnected
+        }
+    }
+
 }
