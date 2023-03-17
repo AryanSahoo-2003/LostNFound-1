@@ -30,6 +30,11 @@
         android:orderInCategory="100"
         android:icon="@drawable/ic_baseline_tag_faces_24"
         />
+    <item android:title="Queries"
+        android:id="@+id/query_section"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_baseline_help_outline_24"
+        />
     <item android:title="Privacy Policy"
         android:id="@+id/privacy_policy"
         android:orderInCategory="100"

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:layout_marginBottom="8dp"
+    android:layout_gravity="center"
+    android:gravity="center"
+    tools:context=".activities.qurery">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="215dp"
+                android:layout_height="49dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:text="Query Section"
+                android:fontFamily="@font/balsamiq_sans"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/query_Submit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.026" />
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/query_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="17dp"
+                app:cardCornerRadius="30dp"
+                app:layout_constraintBottom_toTopOf="@+id/textInputLayout4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8">
+
+                <Spinner
+                    android:id="@+id/spinnerDinner"
+                    android:layout_width="334dp"
+                    android:layout_height="49dp"
+                    android:autofillHints="Having Queries?" />
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout4"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:hint="Name"
+                app:endIconMode="custom"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:errorIconDrawable="@drawable/ic_baseline_error_24"
+                app:layout_constraintBottom_toTopOf="@+id/emailTextInputLayput"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/query_card"
+                app:prefixTextColor="#ED6E19"
+                app:startIconDrawable="@drawable/ic_baseline_person_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/query_PersonName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textSize="14sp"
+                    tools:text="" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/emailTextInputLayput"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Institute Email Address"
+                android:layout_marginBottom="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="20dp"
+                app:endIconMode="custom"
+                app:errorIconDrawable="@drawable/ic_baseline_error_24"
+                app:layout_constraintBottom_toTopOf="@+id/phone_fill_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout4"
+                app:prefixTextColor="#ED6E19"
+                app:startIconDrawable="@drawable/ic_baseline_local_post_office_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/query_Email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textSize="14sp"
+                    tools:text="" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phone_fill_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:counterEnabled="true"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                app:counterMaxLength="10"
+                app:prefixText="+91"
+                app:prefixTextColor="#ED6E19"
+                app:endIconMode="clear_text"
+                app:layout_constraintBottom_toTopOf="@+id/desc_fill_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailTextInputLayput"
+                app:startIconDrawable="@drawable/ic_baseline_local_phone_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/query_PhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/desc_fill_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:hint="Description"
+                app:counterEnabled="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:counterMaxLength="450"
+                app:endIconMode="clear_text"
+                app:layout_constraintBottom_toTopOf="@+id/materialButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phone_fill_layout"
+                app:startIconDrawable="@drawable/ic_baseline_description_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/query_Description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="450"
+                    android:text=""
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+            android:id="@+id/materialButton"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            app:cornerRadius="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+            android:backgroundTint="#E8420E"
+            android:text="Upload Picture"
+            app:icon="@drawable/ic_baseline_cloud_upload_24"
+            app:layout_constraintBottom_toTopOf="@+id/query_Submit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/desc_fill_layout" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/query_Submit"
+            android:layout_width="163dp"
+            app:cornerRadius="10dp"
+            android:backgroundTint="@color/CustomOr"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:icon="@drawable/ic_baseline_local_post_office_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.95" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+    </LinearLayout>

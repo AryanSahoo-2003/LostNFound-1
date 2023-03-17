@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.iitp.trakon.R
+import com.iitp.trakon.models.Users
 import kotlinx.android.synthetic.main.activity_lost_expanded_description.*
 
 class Lost_Expanded_Description : AppCompatActivity() {
@@ -32,7 +35,10 @@ class Lost_Expanded_Description : AppCompatActivity() {
 
         courseRV.adapter = courseAdapter
 
-
+        FirebaseFirestore.getInstance().collection("users").document(intent.getStringExtra("user_id_p")
+            .toString()).get().addOnSuccessListener {
+            LostExpanded_RollNo.setText(it.data?.get("roll").toString())
+        }
 
         LostExpanded_Name.setText(intent.getStringExtra("name").toString())
                   LostExpanded_Place.setText(intent.getStringExtra("place").toString())
@@ -45,5 +51,6 @@ class Lost_Expanded_Description : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
 
 }

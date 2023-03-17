@@ -204,7 +204,8 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
                 app:endIconMode="clear_text"
-
+                app:counterEnabled="true"
+                app:counterMaxLength="25"
                 app:layout_constraintBottom_toTopOf="@+id/where_fill_layout"
                 app:layout_constraintTop_toBottomOf="@+id/email_fill_layout"
                 app:startIconDrawable="@drawable/ic_baseline_item_turned_in_24"
@@ -215,6 +216,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
+                    android:maxLength="25"
                     android:singleLine="true"
                     android:text=""
                     android:textSize="14sp" />

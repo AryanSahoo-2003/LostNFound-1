@@ -104,6 +104,7 @@ class MyLostActivity : Fragment() {
                 intentToLostExpanded.putExtra("date",l.date_time)
                 intentToLostExpanded.putExtra("desc",l.description)
                 intentToLostExpanded.putExtra("phone",l.phone)
+                intentToLostExpanded.putExtra("user_id_p",l.user_id)
                 for(i in 0..lsize-1){
                     intentToLostExpanded.putExtra("test"+i.toString(),l.image[i])
                 }

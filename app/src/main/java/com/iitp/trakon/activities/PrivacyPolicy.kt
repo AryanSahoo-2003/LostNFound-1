@@ -120,6 +120,19 @@ class PrivacyPolicy : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 startActivity(Intent(this,MainActivity::class.java))
 //                islogin="0"
             }
+            R.id.query_section->{
+                var putha:Users
+                mFireStore.collection(Constants.USERS)
+                    .document(getcurrentUserID()).get().addOnSuccessListener { document ->
+                        putha = document.toObject(Users::class.java)!!
+                        val intentToQuery = Intent(this,qurery::class.java)
+                        intentToQuery.putExtra("nameExisting",putha.name)
+                        intentToQuery.putExtra("phoneExisting",putha.mobile)
+                        intentToQuery.putExtra("emailExisting",putha.email)
+                        startActivity(intentToQuery)
+                    }
+
+            }
             R.id.privacy_policy->{
                 startActivity(Intent(this,PrivacyPolicy::class.java))
             }
@@ -213,6 +226,19 @@ override fun onNavigationItemSelected(item: MenuItem): Boolean {
             FirebaseAuth.getInstance().signOut()
             startActivity(Intent(this,MainActivity::class.java))
 //                islogin="0"
+        }
+        R.id.query_section->{
+            var putha:Users
+            mFireStore.collection(Constants.USERS)
+                .document(getcurrentUserID()).get().addOnSuccessListener { document ->
+                    putha = document.toObject(Users::class.java)!!
+                    val intentToQuery = Intent(this,qurery::class.java)
+                    intentToQuery.putExtra("nameExisting",putha.name)
+                    intentToQuery.putExtra("phoneExisting",putha.mobile)
+                    intentToQuery.putExtra("emailExisting",putha.email)
+                    startActivity(intentToQuery)
+                }
+
         }
         R.id.privacy_policy->{
             startActivity(Intent(this,PrivacyPolicy::class.java))

@@ -52,22 +52,27 @@ class MyLostAdapter(private val context: Context, courseModelArrayList: ArrayLis
        builder.setIcon(android.R.drawable.ic_dialog_alert)
 
        builder.setPositiveButton("Yes") { dialogInterface, which ->
-
-           FirebaseFirestore.getInstance().collection("lostitem").document(item.item_id).update("delete",true)
-               .addOnSuccessListener {
-                   showProgressDialog("hi")
-                   FirebaseFirestore.getInstance().collection("lostitem").document(item.item_id).delete().addOnSuccessListener {
-                       Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT).show();
-                       FirebaseFirestore.getInstance().collection("archivelost").add(item).addOnSuccessListener {
-                           FirebaseFirestore.getInstance().collection("archivelost").document(it.id.toString()).update("target_name",editname.text.toString())
-                           FirebaseFirestore.getInstance().collection("archivelost").document(it.id).update("target_roll",editRoll.text.toString())
+           if(editname.text.isNotEmpty() && editRoll.text.isNotEmpty()){
+               FirebaseFirestore.getInstance().collection("lostitem").document(item.item_id).update("delete",true)
+                   .addOnSuccessListener {
+                       showProgressDialog("hi")
+                       FirebaseFirestore.getInstance().collection("lostitem").document(item.item_id).delete().addOnSuccessListener {
+                           Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+                           FirebaseFirestore.getInstance().collection("archivelost").add(item).addOnSuccessListener {
+                               FirebaseFirestore.getInstance().collection("archivelost").document(it.id.toString()).update("target_name",editname.text.toString())
+                               FirebaseFirestore.getInstance().collection("archivelost").document(it.id).update("target_roll",editRoll.text.toString())
+                           }
+                           hideProgressDialog()
+                           context.startActivity(Intent(context, Tabs::class.java))
                        }
-                        hideProgressDialog()
-                       context.startActivity(Intent(context, Tabs::class.java))
+                   }.addOnFailureListener {
+                       Toast.makeText(context, "Failed to delete post", Toast.LENGTH_SHORT).show();
                    }
-               }.addOnFailureListener {
-               Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
            }
+           else{
+               Toast.makeText(context, "Fields must not be empty", Toast.LENGTH_SHORT).show();
+           }
+
        }
        builder.setNeutralButton("Cancel"){dialogInterface , which ->
 
