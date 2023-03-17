@@ -10,6 +10,7 @@ import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.iitp.trakon.models.Query_model
 
 class firestoreclass {
     private val mFireStore=FirebaseFirestore.getInstance()
@@ -44,6 +45,15 @@ class firestoreclass {
         mFireStore.collection("lostitem")
             .add(userInfo).addOnSuccessListener {
                 activity.LostitemRegistered()
+            }.addOnFailureListener{
+                Log.e(activity.javaClass.simpleName,"Error")
+            }
+    }
+    fun registerQuery(activity:qurery,userInfo: Query_model){
+        mFireStore.collection("Query")
+            .add(userInfo).addOnSuccessListener {
+                Log.d("aryan",it.id)
+                activity.QueryRegistered()
             }.addOnFailureListener{
                 Log.e(activity.javaClass.simpleName,"Error")
             }

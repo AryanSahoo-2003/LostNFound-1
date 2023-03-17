@@ -47,8 +47,8 @@
             android:textSize="16sp"
             cardView:layout_constraintBottom_toTopOf="@+id/del_button"
             cardView:layout_constraintEnd_toEndOf="parent"
-            cardView:layout_constraintHorizontal_bias="0.112"
-            cardView:layout_constraintStart_toStartOf="parent"
+            cardView:layout_constraintHorizontal_bias="0.0"
+            cardView:layout_constraintStart_toStartOf="@+id/mane_lost_item"
             cardView:layout_constraintTop_toBottomOf="@+id/mane_lost_item" />
 
         <TextView
@@ -67,23 +67,24 @@
             cardView:layout_constraintTop_toBottomOf="@+id/imgae_lost_item" />
 
         <!--        <androidx.cardview.widget.CardView-->
-<!--            android:id="@+id/hllo"-->
-<!--            android:layout_width="match_parent"-->
-<!--            cardView:cardCornerRadius="14dp"-->
-<!--            android:layout_height="155dp"-->
-<!--            android:background="@color/white"-->
-<!--            android:backgroundTint="@color/white"-->
-<!--            cardView:layout_constraintBottom_toTopOf="@+id/keyword_lost_item"-->
-<!--            cardView:layout_constraintEnd_toEndOf="parent"-->
-<!--            cardView:layout_constraintHorizontal_bias="0.589"-->
-<!--            cardView:layout_constraintStart_toStartOf="parent"-->
-<!--            cardView:layout_constraintTop_toTopOf="parent"-->
-<!--            cardView:layout_constraintVertical_bias="0.08">-->
+        <!--            android:id="@+id/hllo"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            cardView:cardCornerRadius="14dp"-->
+        <!--            android:layout_height="155dp"-->
+        <!--            android:background="@color/white"-->
+        <!--            android:backgroundTint="@color/white"-->
+        <!--            cardView:layout_constraintBottom_toTopOf="@+id/keyword_lost_item"-->
+        <!--            cardView:layout_constraintEnd_toEndOf="parent"-->
+        <!--            cardView:layout_constraintHorizontal_bias="0.589"-->
+        <!--            cardView:layout_constraintStart_toStartOf="parent"-->
+        <!--            cardView:layout_constraintTop_toTopOf="parent"-->
+        <!--            cardView:layout_constraintVertical_bias="0.08">-->
 
         <TextView
             android:id="@+id/keyword_lost_item"
             android:layout_width="wrap_content"
             android:layout_height="42dp"
+            android:layout_marginStart="23dp"
             android:gravity="center"
             android:text="TextView"
             android:textAlignment="center"
@@ -92,7 +93,7 @@
             android:textStyle="bold"
             cardView:layout_constraintBottom_toTopOf="@+id/mane_lost_item"
             cardView:layout_constraintEnd_toEndOf="parent"
-            cardView:layout_constraintHorizontal_bias="0.118"
+            cardView:layout_constraintHorizontal_bias="0.0"
             cardView:layout_constraintStart_toStartOf="parent"
             cardView:layout_constraintTop_toBottomOf="@id/imgae_lost_item" />
 
@@ -113,39 +114,78 @@
             cardView:layout_constraintTop_toBottomOf="@+id/keyword_lost_item" />
 
         <ImageView
-                android:id="@+id/imgae_lost_item"
-                android:layout_width="match_parent"
-                android:layout_gravity="center"
-                android:layout_height="144dp"
-                cardView:layout_constraintBottom_toTopOf="@+id/keyword_lost_item"
-                cardView:layout_constraintEnd_toEndOf="parent"
-                cardView:layout_constraintHorizontal_bias="0.589"
-                cardView:layout_constraintStart_toStartOf="parent"
-                cardView:layout_constraintTop_toTopOf="parent"
-                cardView:layout_constraintVertical_bias="0.08"
-                android:background="@color/Background"
-                android:src="@drawable/ic_baseline_person_24" />
-<!--        </androidx.cardview.widget.CardView>-->
+            android:id="@+id/imgae_lost_item"
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:layout_gravity="center"
+            android:background="@color/Background"
+            android:src="@drawable/ic_baseline_person_24"
+            cardView:layout_constraintBottom_toTopOf="@+id/keyword_lost_item"
+            cardView:layout_constraintEnd_toEndOf="parent"
+            cardView:layout_constraintHorizontal_bias="0.589"
+            cardView:layout_constraintStart_toStartOf="parent"
+            cardView:layout_constraintTop_toTopOf="parent"
+            cardView:layout_constraintVertical_bias="0.08" />
+        <!--        </androidx.cardview.widget.CardView>-->
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/del_button"
-                android:backgroundTint="@color/white"
-                android:fontFamily="@font/saira_stencil_one"
-                android:gravity="center"
-                android:text="Claim it"
-                android:textAlignment="center"
-                android:textColor="#0080f5"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:layout_width="308dp"
-                android:layout_height="wrap_content"
-                cardView:cornerRadius="12dp"
-                cardView:layout_constraintBottom_toBottomOf="parent"
-                cardView:layout_constraintEnd_toEndOf="parent"
-                cardView:layout_constraintHorizontal_bias="0.5"
-                cardView:layout_constraintStart_toStartOf="parent"
-                cardView:layout_constraintTop_toBottomOf="@+id/place_lost_item"
-                cardView:layout_constraintVertical_bias="0.972"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/del_button"
+            android:layout_width="308dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/saira_stencil_one"
+            android:gravity="center"
+            android:text="Claim it"
+            android:textAlignment="center"
+            android:textColor="#0080f5"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            cardView:cornerRadius="12dp"
+            cardView:layout_constraintBottom_toTopOf="@+id/remove_button"
+            cardView:layout_constraintEnd_toEndOf="parent"
+            cardView:layout_constraintHorizontal_bias="0.5"
+            cardView:layout_constraintStart_toStartOf="parent"
+            cardView:layout_constraintTop_toBottomOf="@+id/place_lost_item" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/remove_button"
+            android:layout_width="308dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/saira_stencil_one"
+            android:gravity="center"
+            android:text="Delete Post"
+            android:textAlignment="center"
+            android:textColor="#0080f5"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            cardView:cornerRadius="12dp"
+            cardView:layout_constraintBottom_toTopOf="@+id/block_button"
+            cardView:layout_constraintEnd_toEndOf="parent"
+            cardView:layout_constraintHorizontal_bias="0.5"
+            cardView:layout_constraintStart_toStartOf="parent"
+            cardView:layout_constraintTop_toBottomOf="@+id/del_button" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/block_button"
+            android:layout_width="308dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/saira_stencil_one"
+            android:gravity="center"
+            android:text="Block user"
+            android:textAlignment="center"
+            android:textColor="#0080f5"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            cardView:cornerRadius="12dp"
+            cardView:layout_constraintBottom_toBottomOf="parent"
+            cardView:layout_constraintEnd_toEndOf="parent"
+            cardView:layout_constraintHorizontal_bias="0.5"
+            cardView:layout_constraintStart_toStartOf="parent"
+            cardView:layout_constraintTop_toBottomOf="@+id/remove_button" />
 
         <ImageView
             android:id="@+id/imageView5"
@@ -153,7 +193,8 @@
             android:layout_height="16sp"
             cardView:layout_constraintBottom_toBottomOf="@+id/keyword_lost_item"
             cardView:layout_constraintEnd_toStartOf="@+id/keyword_lost_item"
-            cardView:layout_constraintStart_toStartOf="parent"
+            cardView:layout_constraintHorizontal_bias="0.0"
+            cardView:layout_constraintStart_toStartOf="@+id/imgae_lost_item"
             cardView:layout_constraintTop_toTopOf="@+id/keyword_lost_item"
             cardView:srcCompat="@drawable/ic_baseline_assignment_turned_in_24" />
 

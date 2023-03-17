@@ -35,6 +35,7 @@
             android:id="@+id/keyword_lost_item"
             android:layout_width="wrap_content"
             android:layout_height="42dp"
+            android:layout_marginStart="34dp"
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -42,7 +43,7 @@
             android:textStyle="bold"
             cardView:layout_constraintBottom_toTopOf="@+id/mane_lost_item"
             cardView:layout_constraintEnd_toEndOf="parent"
-            cardView:layout_constraintHorizontal_bias="0.133"
+            cardView:layout_constraintHorizontal_bias="0.025"
             cardView:layout_constraintStart_toStartOf="parent"
             cardView:layout_constraintTop_toBottomOf="@+id/imgae_lost_item"
             tools:text="TextView" />
@@ -57,8 +58,8 @@
             android:textStyle="normal"
             cardView:layout_constraintBottom_toTopOf="@+id/place_lost_item"
             cardView:layout_constraintEnd_toEndOf="parent"
-            cardView:layout_constraintHorizontal_bias="0.127"
-            cardView:layout_constraintStart_toStartOf="parent"
+            cardView:layout_constraintHorizontal_bias="0.0"
+            cardView:layout_constraintStart_toStartOf="@+id/keyword_lost_item"
             cardView:layout_constraintTop_toBottomOf="@+id/keyword_lost_item"
             tools:text="TextView" />
 
@@ -73,8 +74,8 @@
             android:textColor="@color/white"
             android:textStyle="italic"
             cardView:layout_constraintBottom_toTopOf="@+id/textView2"
-            cardView:layout_constraintEnd_toEndOf="@+id/place_lost_item"
-            cardView:layout_constraintHorizontal_bias="0.173"
+            cardView:layout_constraintEnd_toEndOf="parent"
+            cardView:layout_constraintHorizontal_bias="0.0"
             cardView:layout_constraintStart_toStartOf="@+id/place_lost_item"
             cardView:layout_constraintTop_toBottomOf="@+id/place_lost_item"
             tools:text="TextView" />
@@ -88,15 +89,15 @@
             android:textColor="@color/white"
             cardView:layout_constraintBottom_toTopOf="@+id/when_lost_item"
             cardView:layout_constraintEnd_toEndOf="parent"
-            cardView:layout_constraintHorizontal_bias="0.127"
-            cardView:layout_constraintStart_toStartOf="parent"
+            cardView:layout_constraintHorizontal_bias="0.0"
+            cardView:layout_constraintStart_toStartOf="@+id/mane_lost_item"
             cardView:layout_constraintTop_toBottomOf="@+id/mane_lost_item"
             tools:text="TextView" />
 
         <ImageView
             android:id="@+id/imgae_lost_item"
-            android:layout_width="317dp"
-            android:layout_height="144dp"
+            android:layout_width="341dp"
+            android:layout_height="143dp"
             android:layout_gravity="center"
             android:layout_margin="14dp"
             android:background="@color/Background"
@@ -204,8 +205,7 @@
             android:layout_height="wrap_content"
             cardView:layout_constraintBottom_toBottomOf="@+id/keyword_lost_item"
             cardView:layout_constraintEnd_toStartOf="@+id/keyword_lost_item"
-            cardView:layout_constraintHorizontal_bias="0.146"
-            cardView:layout_constraintStart_toStartOf="parent"
+            cardView:layout_constraintStart_toStartOf="@+id/imgae_lost_item"
             cardView:layout_constraintTop_toTopOf="@+id/keyword_lost_item"
             cardView:srcCompat="@drawable/ic_baseline_assignment_turned_in_24" />
 
@@ -228,8 +228,7 @@
             cardView:layout_constraintEnd_toStartOf="@+id/place_lost_item"
             cardView:layout_constraintHorizontal_bias="0.0"
             cardView:layout_constraintStart_toStartOf="@+id/imageView11"
-            cardView:layout_constraintTop_toTopOf="@+id/place_lost_item"
-            cardView:layout_constraintVertical_bias="0.368"
+            cardView:layout_constraintTop_toBottomOf="@+id/mane_lost_item"
             cardView:srcCompat="@drawable/ic_baseline_gps_fixed_24" />
 
         <ImageView

@@ -157,6 +157,7 @@ class LostActivity :Fragment() {
                     intentToLostExpanded.putExtra("date",l.date_time)
                     intentToLostExpanded.putExtra("desc",l.description)
                     intentToLostExpanded.putExtra("phone",l.phone)
+                intentToLostExpanded.putExtra("user_id_p",l.user_id)
                     for(i in 0..lsize-1){
                         intentToLostExpanded.putExtra("test"+i.toString(),l.image[i])
                     }
@@ -201,10 +202,11 @@ class LostActivity :Fragment() {
                         document.data["place"] as String,
                         document.data["description"] as String,
                         document.data["image"] as ArrayList<String> /* = java.util.ArrayList<kotlin.String> */,
-                        "",
+                        document.data["user_id"] as String,
                         document.data["user_email"] as String,
                         document.data["date_time"] as String,
-                        document.data["item_lost"] as String
+                        document.data["item_lost"] as String,
+                        document.id
                     )
 //                    Log.d("aryan",lostitem.item_lost.toString())
                     courseModelArrayList.add(lostitem)

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
@@ -38,31 +39,34 @@ class UpdatePassword : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         setSupportActionBar(toolbar)
 
         button_update.setOnClickListener {
+           if(validateUpdatePassForm(new_pass.text.toString(), confirm_new_pass.text.toString()))
+           {
+               if(confirm_new_pass.text.toString()==new_pass.text.toString()) {
 
-            if(confirm_new_pass.text.toString()==new_pass.text.toString()) {
+                   user!!.updatePassword(new_pass.text.toString()).addOnCompleteListener { task ->
+                       if (task.isSuccessful) {
+                           Toast.makeText(
+                               this,
+                               "Your Password Has Been Updated successfully",
+                               Toast.LENGTH_SHORT
+                           ).show()
+                           startActivity(Intent(this,Tabs::class.java))
+                           this.finish()
+                       } else {
+                           Toast.makeText(this,"Please Login again and then try !!", Toast.LENGTH_LONG).show()
+                           Log.e("aryan",task.exception.toString())
+                       }
+                   }
+               }
+               else{
+                   Log.d("aryan",
+                       (confirm_new_pass.text.toString()==new_pass.text.toString()).toString()
+                   )
+                   Toast.makeText(this,"New Password and Confirm Password should be same",Toast.LENGTH_SHORT).show()
+               }
+           }
+           }
 
-                user!!.updatePassword(new_pass.text.toString()).addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Toast.makeText(
-                            this,
-                            "Your Password Has Been Updated successfully",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        startActivity(Intent(this,Tabs::class.java))
-                        this.finish()
-                    } else {
-                        Toast.makeText(this,"Please Login again and then try !!", Toast.LENGTH_LONG).show()
-                        Log.e("aryan",task.exception.toString())
-                    }
-                }
-            }
-            else{
-                Log.d("aryan",
-                    (confirm_new_pass.text.toString()==new_pass.text.toString()).toString()
-                )
-                Toast.makeText(this,"New Password and Confirm Password should be same",Toast.LENGTH_SHORT).show()
-            }
-        }
         firestoreclass().signInUser(this)
         fun showProgressDialog(text:String)
         {   progressDialog = ProgressDialog(this)
@@ -124,6 +128,19 @@ class UpdatePassword : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                     FirebaseAuth.getInstance().signOut()
                     startActivity(Intent(this,MainActivity::class.java))
 //                islogin="0"
+                }
+                R.id.query_section->{
+                    var putha:Users
+                    mFireStore.collection(Constants.USERS)
+                        .document(getcurrentUserID()).get().addOnSuccessListener { document ->
+                            putha = document.toObject(Users::class.java)!!
+                            val intentToQuery = Intent(this,qurery::class.java)
+                            intentToQuery.putExtra("nameExisting",putha.name)
+                            intentToQuery.putExtra("phoneExisting",putha.mobile)
+                            intentToQuery.putExtra("emailExisting",putha.email)
+                            startActivity(intentToQuery)
+                        }
+
                 }
                 R.id.privacy_policy->{
                     startActivity(Intent(this,PrivacyPolicy::class.java))
@@ -217,6 +234,19 @@ class UpdatePassword : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 startActivity(Intent(this,MainActivity::class.java))
 //                islogin="0"
             }
+            R.id.query_section->{
+                var putha:Users
+                mFireStore.collection(Constants.USERS)
+                    .document(getcurrentUserID()).get().addOnSuccessListener { document ->
+                        putha = document.toObject(Users::class.java)!!
+                        val intentToQuery = Intent(this,qurery::class.java)
+                        intentToQuery.putExtra("nameExisting",putha.name)
+                        intentToQuery.putExtra("phoneExisting",putha.mobile)
+                        intentToQuery.putExtra("emailExisting",putha.email)
+                        startActivity(intentToQuery)
+                    }
+
+            }
             R.id.privacy_policy->{
                 startActivity(Intent(this,PrivacyPolicy::class.java))
             }
@@ -225,4 +255,34 @@ class UpdatePassword : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         drawerLayout.closeDrawers()
         return true
     }
+
+    private fun validateUpdatePassForm(
+       newpass: String,
+       confirmnewpass: String
+    ): Boolean {
+        return when {//checking if the field are empty
+            TextUtils.isEmpty(newpass.trim { it <= ' ' }) -> {
+                Toast.makeText(
+                    this,
+                    "New Password should be of atleast 6 characters.",
+                    Toast.LENGTH_SHORT
+                ).show()
+                false
+            }
+            TextUtils.isEmpty(confirmnewpass.trim { it <= ' ' }) -> {
+                Toast.makeText(
+                    this,
+                    "Confirm and New password should be same.",
+                    Toast.LENGTH_SHORT
+                ).show()
+                false
+            }
+            else -> {
+                true
+            }
+        }
+    }
+
+
+
 }

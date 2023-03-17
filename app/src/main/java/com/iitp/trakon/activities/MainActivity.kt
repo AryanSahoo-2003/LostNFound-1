@@ -30,6 +30,12 @@ class MainActivity : BaseActivity() {
         Signup.setOnClickListener {
             startActivity(Intent(this, SignupPage::class.java))
         }
+
+        query_text.setOnClickListener{
+            startActivity(Intent(this,qurery::class.java))
+            finish()
+        }
+
         r_password.setOnClickListener {
             val email = Username.text.toString()
             if (email.isNotEmpty()) {

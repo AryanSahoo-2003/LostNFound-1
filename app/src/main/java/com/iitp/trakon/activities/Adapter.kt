@@ -1,4 +1,5 @@
 package com.iitp.trakon.activities
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.iitp.trakon.R
@@ -42,37 +44,100 @@ class CourseAdapter(private val context: Context, courseModelArrayList: ArrayLis
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseAdapter.Viewholder {
         // to inflate the layout for each item of recycler view.
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false)
-        return Viewholder(view,mlistener).listen { pos, type ->
+        return Viewholder(view,mlistener).listen { pos, type,flag ->
             val item = courseModelArrayList[pos]
-            Log.d("aryan",item.toString())
-//            Toast.makeText(context,item.name, Toast.LENGTH_SHORT).show()
+            if(flag==0){
 
-            var sendto="bjhddh"
-            var message=""
+                var sendto="bjhddh"
+                var message=""
 
 
-            mFireStore.collection(Constants.USERS)
-                .document(getcurrentUserID()).get().addOnSuccessListener { document ->
-                    val loggedInUser = document.toObject(Users::class.java)!!
-                    message ="Hello "+item.name+",\n"+loggedInUser.name+" has found the lost item.\nDescription:"+item.description+ "\nEmail:"+loggedInUser.email+"\nPhone Number:"+loggedInUser.mobile+"\nWhatsapp:"+loggedInUser.whatsapp;
-                }.addOnCompleteListener{
-                    val subject= "Found Lost Item"
-                    val msg=message
-                    sendto=item.user_email
+                mFireStore.collection(Constants.USERS)
+                    .document(getcurrentUserID()).get().addOnSuccessListener { document ->
+                        val loggedInUser = document.toObject(Users::class.java)!!
+                        message ="Hello "+item.name+",\n"+loggedInUser.name+" has found the lost item.\nDescription:"+item.description+ "\nEmail:"+loggedInUser.email+"\nPhone Number:"+loggedInUser.mobile+"\nWhatsapp:"+loggedInUser.whatsapp;
+                    }.addOnCompleteListener{
+                        val subject= "Found Lost Item"
+                        val msg=message
+                        sendto=item.user_email
 
-                    val send = Intent(Intent.ACTION_SENDTO)
-                    val uriText = "mailto:" + Uri.encode(item.user_email) +
-                            "?subject=" + Uri.encode(subject) +
-                            "&body=" + Uri.encode(msg)
-                    val uri = Uri.parse(uriText)
-                    send.putExtra(Intent.EXTRA_EMAIL,"no-reply@iitp.ac.in")
+                        val send = Intent(Intent.ACTION_SENDTO)
+                        val uriText = "mailto:" + Uri.encode(item.user_email) +
+                                "?subject=" + Uri.encode(subject) +
+                                "&body=" + Uri.encode(msg)
+                        val uri = Uri.parse(uriText)
+                        send.putExtra(Intent.EXTRA_EMAIL,"no-reply@iitp.ac.in")
                         Log.d("aryan",item.user_email)
-                    send.data = uri
-                    context.startActivity(Intent.createChooser(send, "Choose an Email client :"))
+                        send.data = uri
+                        context.startActivity(Intent.createChooser(send, "Choose an Email client :"))
+                    }
+
+            }
+            else if(flag==1){
+                val builder = AlertDialog.Builder(context)
+                //set title for alert dialog
+                builder.setTitle("Remove")
+                //set message for alert dialog
+                builder.setMessage("Sure you want to delete?")
+                builder.setPositiveButton("Yes") { dialogInterface, which ->
+
+
+                    FirebaseFirestore.getInstance().collection("lostitem")
+                        .document(item.item_id).delete()
+                        .addOnSuccessListener {
+                            Toast.makeText(context,"Deleted Successfully!!", Toast.LENGTH_SHORT).show()
+                            context.startActivity(Intent(context,Tabs::class.java))
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+                        }
                 }
+                builder.setNeutralButton("Cancel") { dialogInterface, which ->
+
+                }
+                val alertDialog: AlertDialog = builder.create()
+                // Set other dialog properties
+                alertDialog.setCancelable(false)
+//                alertDialog.setView(dialogLayout)
+//               builder.show()
+                alertDialog.show()
+            }
+            else{
+                val builder = AlertDialog.Builder(context)
+                //set title for alert dialog
+                builder.setTitle("Block")
+                //set message for alert dialog
+                builder.setMessage("Sure you want to block the user?")
+
+                builder.setPositiveButton("Yes") { dialogInterface, which ->
+
+
+                    val user = FirebaseFirestore.getInstance().collection("lostitem")
+                        .document(item.item_id).get()
+                        .addOnSuccessListener {
+                            var user_id = it.data?.get("user_id")
+                            FirebaseFirestore.getInstance().collection("users")
+                                .document(user_id as String).update("valid", false).addOnSuccessListener {
+                                    Toast.makeText(context,"User Blocked Successfully!!",Toast.LENGTH_SHORT).show()
+                                }
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+                        }
+                }
+                builder.setNeutralButton("Cancel") { dialogInterface, which ->
+
+                }
+                val alertDialog: AlertDialog = builder.create()
+                // Set other dialog properties
+                alertDialog.setCancelable(false)
+//                alertDialog.setView(dialogLayout)
+//               builder.show()
+                alertDialog.show()
+
+            }
 
         }
-
 
     }
 
@@ -86,6 +151,15 @@ class CourseAdapter(private val context: Context, courseModelArrayList: ArrayLis
         holder.place_lost.text=item.place
         holder.when_lost.text=item.date_time
         holder.found_it_button.text="Found it!"
+
+        FirebaseFirestore.getInstance().collection("users")
+            .document(getcurrentUserID()).get().addOnSuccessListener {
+                if(it.data?.get("admin") as Boolean==true){
+                    holder.block.visibility=View.VISIBLE
+                    holder.remove.visibility=View.VISIBLE
+                }
+            }
+
         try {
             Glide     //using Glide to display image from url
                 .with(context)
@@ -113,6 +187,8 @@ class CourseAdapter(private val context: Context, courseModelArrayList: ArrayLis
         var when_lost: TextView = view.findViewById(R.id.when_lost_item)
 //        var desc_lost: TextView = view.findViewById(R.id.desc_lost_item)
         var found_it_button: Button =view.findViewById(R.id.del_button)
+        var block:Button=view.findViewById(R.id.block_button)
+        var remove:Button=view.findViewById(R.id.remove_button)
         init{
             view.setOnClickListener {
                 listener.OnItemClick(adapterPosition)
@@ -125,9 +201,23 @@ class CourseAdapter(private val context: Context, courseModelArrayList: ArrayLis
     init {
         this.courseModelArrayList = courseModelArrayList
     }
-    fun <T : RecyclerView.ViewHolder> T.listen(event: (position: Int, type: Int) -> Unit): T {
+    fun <T : RecyclerView.ViewHolder> T.listen(event: (position: Int, type: Int, flag: Int) -> Unit): T {
         itemView.del_button.setOnClickListener {
-            event.invoke(getAdapterPosition(), itemViewType)
+            event.invoke(getAdapterPosition(), itemViewType, 0)
+        }
+        itemView.remove_button.setOnClickListener {
+            event(
+                getAdapterPosition(),
+                itemViewType,
+                1
+            )
+        }
+        itemView.block_button.setOnClickListener {
+            event(
+                getAdapterPosition(),
+                itemViewType,
+                2
+            )
         }
         return this
     }

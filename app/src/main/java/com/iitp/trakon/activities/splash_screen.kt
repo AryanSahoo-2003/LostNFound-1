@@ -77,7 +77,8 @@ class splash_screen : AppCompatActivity() {
 
             if (counter) {
                 FirebaseFirestore.getInstance().collection("users").document(uidUser.toString()).get().addOnSuccessListener {
-                    valid_user = it.data?.get("valid") as Boolean
+//                    valid_user = it.data?.get("valid") as Boolean
+                    valid_user= it.data?.get("valid") as Boolean
                     if (valid_user) {
                         startActivity(Intent(this, Tabs::class.java))
                         finish()
@@ -85,8 +86,8 @@ class splash_screen : AppCompatActivity() {
                     } else {
                         Toast.makeText(this, "You have been blocked by admin :(", Toast.LENGTH_LONG)
                             .show()
-                        finish()
-                        System.exit(0)
+                        lostLottie.pauseAnimation()
+                        foundLottie.pauseAnimation()
                     }
                 }
             } else {
